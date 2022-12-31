@@ -11,10 +11,10 @@ const Landing = () => {
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, soluta
             consectetur error illum nam omnis quibusdam voluptates laboriosam
             velit optio dolores unde debitis esse sunt mollitia, iusto
-            aspernatur numquam. Laboriosam!
+            aspernatur numquam. Laboriosam! loremru
           </p>
           <Link to="/register" className="btn">
-            Войти/Зарегистрирваться
+            Login/Registration
           </Link>
         </div>
       </div>

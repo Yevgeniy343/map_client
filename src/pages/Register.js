@@ -19,13 +19,13 @@ const Register = () => {
       <form className="form">
         <h1>WEB Messenger</h1>
         <div className="input-content">
-          <FormRow placeholder="Имя" changeHandler={""} type="text" />
+          <FormRow placeholder="Name" changeHandler={""} type="text" />
           <FormRow placeholder="Email" changeHandler={""} type="text" />
-          <FormRow placeholder="Пароль" changeHandler={""} type="text" />
+          <FormRow placeholder="Password" changeHandler={""} type="text" />
         </div>
         <div className="actions">
           <button type="button" className="btn button-form">
-            Войти
+            Login
           </button>
         </div>
         <Link to="/">
