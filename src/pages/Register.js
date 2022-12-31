@@ -13,20 +13,42 @@ const initialState = {
 
 const Register = () => {
   const [values, setValues] = useState(initialState);
+  const { name, email, password, isMember } = values;
+
+  const toggleMemberHandler = () => {
+    setValues({ ...values, isMember: !values.isMember });
+  };
 
   return (
     <Wrapper>
       <form className="form">
         <h1>WEB Messenger</h1>
+        <h3 style={{ textAlign: "center" }}>
+          {values.isMember ? "Login" : "Registration"}
+        </h3>
         <div className="input-content">
-          <FormRow placeholder="Name" changeHandler={""} type="text" />
+          {!values.isMember && (
+            <FormRow placeholder="Name" changeHandler={""} type="text" />
+          )}
           <FormRow placeholder="Email" changeHandler={""} type="text" />
           <FormRow placeholder="Password" changeHandler={""} type="text" />
         </div>
         <div className="actions">
           <button type="button" className="btn button-form">
-            Login
+            Submit
           </button>
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <p>
+            {values.isMember ? "Not a member yet?" : "Already a member?"}
+            <button
+              type="button"
+              onClick={toggleMemberHandler}
+              className="member-btn"
+            >
+              {values.isMember ? "Register" : "Login"}
+            </button>
+          </p>
         </div>
         <Link to="/">
           <HiArrowNarrowLeft />

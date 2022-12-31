@@ -27,6 +27,13 @@ const Wrapper = styled.main`
     margin: 1rem;
     text-align: center;
   }
+  .member-btn {
+    background: transparent;
+    border: transparent;
+    color: var(--theme-ui-colors-green50);
+    cursor: pointer;
+    font-size: 1rem;
+  }
   .input-decoration {
     border: none;
     border-bottom: 7px solid var(--theme-ui-colors-green50);
