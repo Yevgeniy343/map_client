@@ -36,6 +36,7 @@ const userSlice = createSlice({
   reducers: {
     logOutUser: (state) => {
       state.user = null;
+      state.token = "";
       removeUserFromLocalStorage();
       removeTokenFromLocalStorage();
     },
@@ -71,7 +72,7 @@ const userSlice = createSlice({
       state.token = token;
       addUserToLocalStorage(user);
       addTokenToLocalStorage(token);
-      toast.success(`С Возвращением ${user.name} !`, { theme: "colored" });
+      toast.success(`Hi ! ${user.name} !`, { theme: "colored" });
     });
     builder.addCase(loginUser.rejected, (state, { payload }) => {
       state.isLoading = false;

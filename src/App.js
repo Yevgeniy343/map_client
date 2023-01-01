@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Landing, Register, Chat } from "./pages/index-pages";
+import { Landing, Register, Chat, ProtectedRoute } from "./pages/index-pages";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -8,9 +8,18 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Chat />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="/chat" element={<Chat />} />
+          </Route>
+          <Route path="/landing" element={<Landing />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/chat" element={<Chat />} />
         </Routes>
         <ToastContainer autoClose={4000} hideProgressBar />
       </BrowserRouter>
