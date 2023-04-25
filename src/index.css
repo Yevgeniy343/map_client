@@ -9,6 +9,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
 
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Yeon+Sung&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
 html {
   font-size: 100%;
@@ -96,7 +97,7 @@ html {
 
 body {
   background-color: var(--theme-ui-colors-green10);
-  font-family: Akzidenz Grotesk BQ Light, Helvetica;
+  font-family: "Open Sans", sans-serif;
 }
 
 small,
