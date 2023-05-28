@@ -12,13 +12,6 @@ const PersonamArea = () => {
     <div>
       <Navbar />
       <Sidebar />
-      <main>
-        {/* <Hero /> */}
-        {/* <FeaturedProducts /> */}
-        {/* <Services /> */}
-        {/* <Contact /> */}
-      </main>
-      {/* <Footer /> */}
     </div>
   );
 };

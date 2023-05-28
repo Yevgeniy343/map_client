@@ -1,21 +1,46 @@
 import React from "react";
-// import logo from "../assets/logo.svg";
-import { Link } from "react-router-dom";
-import { FaTimes } from "react-icons/fa";
-import { links } from "../utils/constants";
-import styled from "styled-components";
-// import CartButtons from "./CartButtons";
-import { useSelector, useDispatch } from "react-redux";
-import { sidebarCloseHandler, logOutUser } from "../features/user/userSlise";
 
-const Sidebar = () => {
-  const { isSidebarOpen } = useSelector((store) => store.user);
+// import logo from "../assets/imgs/branch.png";
+
+import { FaTimes } from "react-icons/fa";
+
+import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { sidebarCloseHandler } from "../features/user/userSlise";
+import { toggleHandler, logOutUser } from "../features/user/userSlise";
+
+const SideBar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logOutHandler = () => {
+    dispatch(sidebarCloseHandler());
+    dispatch(logOutUser());
+  };
+  const homeHandler = () => {
+    dispatch(sidebarCloseHandler());
+    navigate("/landing");
+  };
+  const storeHandler = () => {
+    dispatch(sidebarCloseHandler());
+    navigate("/store");
+  };
+  const groupsHandler = () => {
+    dispatch(sidebarCloseHandler());
+    navigate("/groups");
+  };
+  const learnHandler = () => {
+    dispatch(sidebarCloseHandler());
+    navigate("/learn");
+  };
+
+  const { isSidebarOpen, user } = useSelector((store) => store.user);
   return (
     <SidebarContainer>
       <aside className={isSidebarOpen ? `sidebar show-sidebar` : `sidebar`}>
         <div className="sidebar-header">
-          {/* <img src={logo} alt="logo" className="logo" /> */}
+          {/* <img src={} alt="logo" className="logo" /> */}
           <div></div>
           <button
             className="close-btn"
@@ -26,21 +51,13 @@ const Sidebar = () => {
           </button>
         </div>
         <ul className="links">
-          {links.map(({ id, text, url }) => {
-            return (
-              <li key={id} onClick={() => dispatch(sidebarCloseHandler())}>
-                <Link to={url}>{text}</Link>
-              </li>
-            );
-          })}
-          <li>
-            {/* <Link to="checkout">checkout</Link> */}
-            <button className="btn" onClick={() => dispatch(logOutUser())}>
-              Выход
-            </button>
-          </li>
+          <li onClick={homeHandler}>Home</li>
+          <li onClick={storeHandler}>Store</li>
+          <li onClick={groupsHandler}>Groups</li>
+          <li onClick={learnHandler}>Learn</li>
+          {!user && <li onClick={() => navigate("/register")}>Login</li>}
+          {user && <li onClick={logOutHandler}>LogOut</li>}
         </ul>
-        {/* <CartButtons onClick={() => dispatch(sidebarCloseHandler())} /> */}
       </aside>
     </SidebarContainer>
   );
@@ -48,6 +65,12 @@ const Sidebar = () => {
 
 const SidebarContainer = styled.div`
   text-align: center;
+  background-color: var(--color-2);
+  li {
+    font-size: 2rem;
+    margin: 2rem;
+    color: var(--color-4);
+  }
   .sidebar-header {
     display: flex;
     justify-content: space-between;
@@ -58,14 +81,28 @@ const SidebarContainer = styled.div`
     font-size: 2rem;
     background: transparent;
     border-color: transparent;
-    color: var(--clr-primary-5);
+    color: var(--color-4);
     transition: var(--transition);
     cursor: pointer;
-    color: var(--clr-red-dark);
+
     margin-top: 0.2rem;
   }
   .close-btn:hover {
-    color: var(--clr-red-light);
+  }
+  .alphabet {
+    background-color: transparent;
+    border: 1px solid var(--text);
+    padding: 0.5rem 1rem;
+    border-radius: 60px;
+    color: var(--text);
+    transition: var(--transition);
+    width: 150px;
+    cursor: pointer;
+    margin: 0.5rem;
+    :hover {
+      border: 1px solid white;
+      color: white;
+    }
   }
   .logo {
     justify-self: center;
@@ -74,31 +111,16 @@ const SidebarContainer = styled.div`
   .links {
     margin-bottom: 2rem;
   }
-  .links a {
-    display: block;
-    text-align: left;
-    font-size: 1rem;
-    text-transform: capitalize;
-    padding: 1rem 1.5rem;
-    color: var(--clr-grey-3);
-    transition: var(--transition);
-    letter-spacing: var(--spacing);
+  li {
+    cursor: pointer;
   }
-
-  .links a:hover {
-    padding: 1rem 1.5rem;
-    padding-left: 2rem;
-    background: var(--clr-grey-10);
-    color: var(--clr-grey-2);
-  }
-
   .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--clr-white);
+    background-color: var(--color-1);
     transition: var(--transition);
     transform: translate(-100%);
     z-index: -1;
@@ -107,8 +129,12 @@ const SidebarContainer = styled.div`
     transform: translate(0);
     z-index: 999;
   }
-  .cart-btn-wrapper {
-    margin: 2rem auto;
+
+  .logo {
+    cursor: pointer;
+  }
+  button {
+    float: right;
   }
   @media screen and (min-width: 992px) {
     .sidebar {
@@ -117,4 +143,4 @@ const SidebarContainer = styled.div`
   }
 `;
 
-export default Sidebar;
+export default SideBar;
