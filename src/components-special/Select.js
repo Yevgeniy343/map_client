@@ -10,7 +10,7 @@ const animations = {
 };
 
 const Select = ({ city }) => {
-  const [state, setState] = useState();
+  const [state, setState] = useState("Томск");
   console.log(state);
   const [arrow, setArrow] = useState(false);
 
@@ -41,6 +41,9 @@ const Select = ({ city }) => {
           transition={{ duration: 0.5 }}
         >
           <div className="menu2">
+            <p className="item" onClick={itemHandler}>
+              Томск
+            </p>
             <p className="item" onClick={itemHandler}>
               Омск
             </p>
@@ -123,7 +126,7 @@ const Wrapper = styled.div`
     border-bottom: 2px solid var(--purple-1);
     width: 240px;
     max-height: 200px;
-
+    background-color: white;
     p {
       margin: 0;
     }
