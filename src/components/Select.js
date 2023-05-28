@@ -22,7 +22,6 @@ const Select = ({ city }) => {
           <p className="item">Омск</p>
           <p className="item">Москва</p>
           <p className="item">Краснодар</p>
-          <p className="item">Краснодар</p>
           <p className="item">Казань</p>
           <p className="item">Астрахань</p>
           <p className="item">Челябинск</p>
