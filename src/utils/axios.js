@@ -4,8 +4,11 @@ import {
   getUserFromLocalStorage,
 } from "./localStorage";
 
+const { REACT_APP_URL_API } = process.env;
+
 const customFetch = axios.create({
-  baseURL: "http://localhost:1000/api/",
+  // baseURL: "http://localhost:1000/api/",
+  baseURL: `${REACT_APP_URL_API}/api/`,
 });
 
 customFetch.interceptors.request.use((config) => {
