@@ -1,33 +1,76 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { VscChevronDown, VscChevronUp } from "react-icons/vsc";
+import { motion } from "framer-motion";
+
+const animations = {
+  initial: { opacity: 0, y: -50 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -50 },
+};
 
 const Select = ({ city }) => {
+  const [state, setState] = useState();
+  console.log(state);
   const [arrow, setArrow] = useState(false);
 
   const arrowHandler = () => {
     setArrow(!arrow);
   };
+
+  const itemHandler = (e) => {
+    setState(e.target.textContent);
+    setArrow(false);
+  };
   return (
     <Wrapper>
       <div className={arrow ? "select select_active" : "select"}>
-        <p className="city">{city}</p>
+        <p className="city">{state}</p>
         <div className="icon" onClick={arrowHandler}>
           {arrow === false && <VscChevronDown className="svg_false" />}
           {arrow === true && <VscChevronUp className="svg_true" />}
         </div>
       </div>
       {arrow === true && (
-        <div className="menu">
-          <p className="item">Омск</p>
-          <p className="item">Москва</p>
-          <p className="item">Краснодар</p>
-          <p className="item">Казань</p>
-          <p className="item">Астрахань</p>
-          <p className="item">Челябинск</p>
-          <p className="item">Уфа</p>
-          <p className="item">Тверь</p>
-        </div>
+        <motion.div
+          className="menu"
+          variants={animations}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={{ duration: 0.5 }}
+        >
+          <div className="menu2">
+            <p className="item" onClick={itemHandler}>
+              Омск
+            </p>
+            <p className="item" onClick={itemHandler}>
+              Москва
+            </p>
+            <p className="item" onClick={itemHandler}>
+              Краснодар
+            </p>
+            <p className="item" onClick={itemHandler}>
+              Казань
+            </p>
+            <p className="item" onClick={itemHandler}>
+              Астрахань
+            </p>
+            <p className="item" onClick={itemHandler}>
+              {" "}
+              Челябинск
+            </p>
+            <p className="item" onClick={itemHandler}>
+              Уфа
+            </p>
+            <p className="item" onClick={itemHandler}>
+              Тверь
+            </p>
+            <p className="item" onClick={itemHandler}>
+              Липецк
+            </p>
+          </div>
+        </motion.div>
       )}
     </Wrapper>
   );
@@ -37,14 +80,12 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 0.5rem;
+    padding: 0 1.5rem;
     border: 2px solid var(--purple-1);
     width: 240px;
     height: 44px;
     border-radius: 5px;
-    cursor: pointer;
     transition: 1s;
-
     :hover {
       background-color: var(--purple-2);
     }
@@ -62,6 +103,7 @@ const Wrapper = styled.div`
   svg {
     font-size: 1.7rem;
     margin-top: 0.4rem;
+    cursor: pointer;
   }
   .svg_false {
     color: var(--purple-1);
@@ -72,6 +114,8 @@ const Wrapper = styled.div`
   .menu {
     /* margin-right: 0.5rem; */
     /* padding-right: 0.5rem; */
+    display: flex;
+    justify-content: center;
     position: absolute;
     border-radius: 5px;
     border-left: 2px solid var(--purple-1);
@@ -79,8 +123,25 @@ const Wrapper = styled.div`
     border-bottom: 2px solid var(--purple-1);
     width: 240px;
     max-height: 200px;
-    overflow: auto;
 
+    p {
+      margin: 0;
+    }
+    .item {
+      cursor: pointer;
+      margin-top: 0.4rem;
+      margin-bottom: 0.4rem;
+      padding-left: 1rem;
+      transition: 1s;
+      /* margin-left: 0.3rem; */
+      :hover {
+        background-color: var(--purple-2);
+      }
+    }
+  }
+  .menu2 {
+    width: 225px;
+    overflow: auto;
     ::-webkit-scrollbar {
       width: 5px;
     }
@@ -92,20 +153,6 @@ const Wrapper = styled.div`
     ::-webkit-scrollbar-thumb {
       background: var(--purple-1);
       border-radius: 10px;
-    }
-    p {
-      margin: 0;
-    }
-    .item {
-      cursor: pointer;
-      margin-top: 0.4rem;
-      margin-bottom: 0.4rem;
-      padding-left: 1rem;
-      transition: 1s;
-      margin-left: 0.3rem;
-      :hover {
-        background-color: var(--purple-2);
-      }
     }
   }
   @media (min-width: 576px) {
