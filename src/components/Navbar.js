@@ -10,7 +10,8 @@ import { useDispatch, useSelector } from "react-redux";
 //   logOutUser,
 // } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
-import Select from "./Select";
+import Select from "../components-special/Select";
+import Input from "../components-special/Input";
 
 const NavBar = () => {
   const { user } = useSelector((store) => store.user);
@@ -22,7 +23,12 @@ const NavBar = () => {
   };
   return (
     <NavContainer>
-      <Select city="Томск" />
+      <div className="element">
+        <Select city="Томск" />
+      </div>
+      <div className="element">
+        <Input placeholder="События ..." />
+      </div>
       {/* <input type="text" />
       <button>ВОЙТИ</button>
       <button>ЗАРЕГИСТРИРОВАТЬСЯ</button> */}
@@ -36,7 +42,9 @@ const NavContainer = styled.nav`
   align-items: center;
   justify-content: center;
   background-color: var(--color-1);
-  font-family: "Yeon Sung", cursive;
+  .element {
+    margin: 1rem;
+  }
 
   @media (min-width: 768px) {
   }
