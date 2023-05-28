@@ -1,6 +1,6 @@
 import Landing from "./Landing";
 import Register from "./Register";
-import Chat from "./Chat";
+import PersonalArea from "./PersonalArea";
 import ProtectedRoute from "./ProtectedRoute";
 
-export { Landing, Register, Chat, ProtectedRoute };
+export { Landing, Register, PersonalArea, ProtectedRoute };

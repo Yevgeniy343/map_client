@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { registerUserThunk, loginUserThunk } from "./thunk";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import {
   addTokenToLocalStorage,
   addUserToLocalStorage,
@@ -14,6 +14,7 @@ const initialState = {
   isLoading: false,
   user: getUserFromLocalStorage(),
   token: getTokenFromLocalStorage(),
+  isSidebarOpen: false,
 };
 
 export const registerUser = createAsyncThunk(
@@ -39,6 +40,12 @@ const userSlice = createSlice({
       state.token = "";
       removeUserFromLocalStorage();
       removeTokenFromLocalStorage();
+    },
+    sidebarCloseHandler: (state) => {
+      state.isSidebarOpen = false;
+    },
+    sidebarOpenHandler: (state) => {
+      state.isSidebarOpen = true;
     },
   },
   extraReducers: (builder) => {
@@ -81,5 +88,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { logOutUser } = userSlice.actions;
+export const { logOutUser, sidebarCloseHandler, sidebarOpenHandler } =
+  userSlice.actions;
 export default userSlice.reducer;

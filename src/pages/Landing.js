@@ -7,15 +7,15 @@ const Landing = () => {
     <Wrapper>
       <div className="page-content">
         <div>
-          <h1>WEB Messenger</h1>
+          <h1>Shop</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, soluta
-            consectetur error illum nam omnis quibusdam voluptates laboriosam
-            velit optio dolores unde debitis esse sunt mollitia, iusto
-            aspernatur numquam. Laboriosam! loremru
+            Далеко-далеко за словесными горами в стране гласных и согласных
+            живут рыбные тексты. Букв точках речью даль запятых не над? Инициал,
+            реторический. Имеет возвращайся гор своих свой рот запятых по всей
+            предупредила щеке свое.
           </p>
           <Link to="/register" className="btn">
-            Login/Registration
+            Вход/Регистрация
           </Link>
         </div>
       </div>
@@ -24,8 +24,6 @@ const Landing = () => {
 };
 const Wrapper = styled.main`
   margin: 2rem;
-  font-family: "Yeon Sung", cursive;
-
   .page-content {
     display: grid;
     grid-template-columns: 1fr;
@@ -34,7 +32,7 @@ const Wrapper = styled.main`
       font-size: 3rem;
     }
     p {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
   }
   @media (min-width: 992px) {

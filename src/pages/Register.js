@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../features/user/userSlise";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const initialState = {
   name: "",
@@ -44,7 +44,7 @@ const Register = () => {
   useEffect(() => {
     if (user) {
       setTimeout(() => {
-        navigate("/chat");
+        navigate("/personal-area");
       }, 2000);
     }
   }, [user]);
@@ -52,9 +52,9 @@ const Register = () => {
   return (
     <Wrapper>
       <form className="form" onSubmit={onSubmit}>
-        <h1>WEB Messenger</h1>
+        <h1>Shop</h1>
         <h3 style={{ textAlign: "center" }}>
-          {values.isMember ? "Login" : "Registration"}
+          {values.isMember ? "Вход" : "Регистрация"}
         </h3>
         <div className="input-content">
           {!values.isMember && (
@@ -87,18 +87,18 @@ const Register = () => {
             className="btn button-form"
             disabled={isLoading}
           >
-            {isLoading ? "Thunking ..." : "Submit"}
+            {isLoading ? "Думаю ..." : "Подтвердить"}
           </button>
         </div>
         <div style={{ textAlign: "center" }}>
           <p>
-            {values.isMember ? "Not a member yet?" : "Already a member?"}
+            {values.isMember ? "Нет регистрации? " : "Уже есть регистрация? "}
             <button
               type="button"
               onClick={toggleMemberHandler}
               className="member-btn"
             >
-              {values.isMember ? "Register" : "Login"}
+              {values.isMember ? " Регистрация" : "Вход"}
             </button>
           </p>
         </div>
@@ -110,16 +110,19 @@ const Register = () => {
   );
 };
 const Wrapper = styled.main`
-  font-family: "Yeon Sung", cursive;
-
+  input {
+    margin: 0.5rem;
+  }
   svg {
-    color: var(--theme-ui-colors-green70);
+    color: var(--clr-primary-5);
+
     width: 2rem;
     border: 1px solid var(--theme-ui-colors-green70);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
   svg:hover {
-    background-color: var(--theme-ui-colors-green20);
+    background: var(--clr-primary-10);
+    transition: var(--transition);
     border-radius: 40px;
   }
   .input-content {
@@ -129,7 +132,6 @@ const Wrapper = styled.main`
     text-align: center;
   }
   button {
-    font-family: "Yeon Sung", cursive;
     font-size: 1.3rem;
   }
   .actions {
@@ -139,19 +141,24 @@ const Wrapper = styled.main`
   .member-btn {
     background: transparent;
     border: transparent;
-    color: var(--theme-ui-colors-green50);
+    color: var(--clr-primary-2);
     cursor: pointer;
     font-size: 1rem;
+    transition: var(--transition);
+    :hover {
+      color: var(--clr-primary-4);
+    }
   }
   .input-decoration {
     border: none;
-    border-bottom: 7px solid var(--theme-ui-colors-green50);
-    font-family: "Yeon Sung", cursive;
+    border-bottom: 7px solid var(--clr-primary-5);
     font-size: 1.3rem;
-    caret-color: var(--theme-ui-colors-yellow50);
+    caret-color: var(--clr-primary-5);
+    background-color: var(--clr-primary-10);
+
     :focus-visible {
       outline: none;
-      background-color: var(--theme-ui-colors-green20);
+      background-color: var(--clr-primary-10);
       ::placeholder {
         font-size: 1rem;
       }
