@@ -5,6 +5,9 @@ import {
   PersonalArea,
   ProtectedRoute,
 } from "./pages/index-pages";
+import ProtectedAdmin from "./pages/ProtectedAdmin";
+import AdminLogin from "./pages/admin-pages/AdminLogin";
+import AdminPage from "./pages/admin-pages/AdminPage";
 import { Toaster } from "react-hot-toast";
 
 function App() {
@@ -22,7 +25,21 @@ function App() {
           >
             <Route path="/personal-area" element={<PersonalArea />} />
           </Route>
+
+          <Route
+            path="/a-panel"
+            element={
+              <ProtectedAdmin>
+                <AdminPage />
+              </ProtectedAdmin>
+            }
+          >
+            <Route path="/a-panel" element={<AdminPage />} />
+          </Route>
+
           <Route path="/landing" element={<Landing />} />
+          <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminLogin />} />
           <Route path="/register" element={<Register />} />
         </Routes>
         <Toaster
@@ -32,11 +49,11 @@ function App() {
             duration: 5000,
             style: {
               padding: "1rem",
-              backgroundColor: "#c4a491",
+              backgroundColor: "#ffdfff",
               fontSize: "1rem",
-              color: "#5f4435",
-              // borderColor: "#5f4435",
-              border: "2px solid #ffff",
+              color: "#17132a",
+              // borderColor: "#ff00ff",
+              border: "2px solid #ff00ff",
             },
           }}
         />

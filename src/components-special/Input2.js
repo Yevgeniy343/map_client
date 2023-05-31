@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { FiSearch } from "react-icons/fi";
 
-const Input = ({ type, placeholder, value, name, onChange }) => {
+const Input2 = ({ type, placeholder, value, name, onChange }) => {
   return (
     <Wrapper>
       <input
@@ -12,9 +11,6 @@ const Input = ({ type, placeholder, value, name, onChange }) => {
         name={name}
         onChange={onChange}
       />
-      <button>
-        <FiSearch />
-      </button>
     </Wrapper>
   );
 };
@@ -53,17 +49,7 @@ const Wrapper = styled.div`
       }
     }
   }
-  button {
-    background-color: transparent;
-    border: none;
-    font-size: 1.2rem;
-    border-bottom: 1px solid var(--purple-3);
-    svg {
-      color: var(--purple-3);
 
-      /* color: var(--purple-4); */
-    }
-  }
   @media (min-width: 576px) {
   }
   @media (min-width: 768px) {
@@ -75,4 +61,4 @@ const Wrapper = styled.div`
   @media (min-width: 1340px) {
   }
 `;
-export default Input;
+export default Input2;
