@@ -76,3 +76,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # shop_client
 # project_menu-client
 # afisha_client
+# project_client_admin
