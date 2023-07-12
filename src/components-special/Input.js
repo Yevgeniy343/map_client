@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { FiSearch } from "react-icons/fi";
 
 const Input = ({ type, placeholder, value, name, onChange }) => {
   return (
@@ -12,27 +11,18 @@ const Input = ({ type, placeholder, value, name, onChange }) => {
         name={name}
         onChange={onChange}
       />
-      <button>
-        <FiSearch />
-      </button>
     </Wrapper>
   );
 };
 const Wrapper = styled.div`
-  :hover {
-    svg {
-      transition: 0.5s;
-      color: var(--purple-4);
-    }
-  }
+  margin: auto;
   input {
-    /* width: 113px; */
-    width: 250px;
-    height: 24px;
     border: none;
-    border-bottom: 1px solid var(--purple-3);
-    font-size: 20px;
-    caret-color: var(--purple-1);
+    background: #f4f4f4;
+    height: 50px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 100%;
     ::placeholder {
       color: var(--gray-1);
     }
@@ -40,7 +30,6 @@ const Wrapper = styled.div`
       outline: none;
     }
     :focus {
-      color: var(--purple-3);
       color: var(--gray-2);
     }
     :active {
@@ -49,21 +38,10 @@ const Wrapper = styled.div`
     :hover {
       ::placeholder {
         transition: 0.5s;
-        color: var(--purple-3);
       }
     }
   }
-  button {
-    background-color: transparent;
-    border: none;
-    font-size: 1.2rem;
-    border-bottom: 1px solid var(--purple-3);
-    svg {
-      color: var(--purple-3);
 
-      /* color: var(--purple-4); */
-    }
-  }
   @media (min-width: 576px) {
   }
   @media (min-width: 768px) {

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginAdmin } from "../../features/adminSlice";
 import Button from "../../components-special/Button";
-import Input2 from "../../components-special/Input2";
+import Input from "../../components-special/Input";
 
 const initialState = {
   login: "",
@@ -46,14 +46,14 @@ const AdminLogin = () => {
   return (
     <Wrapper>
       <form className="content" onSubmit={onSubmit}>
-        <Input2
+        <Input
           type="text"
           name="login"
           placeholder="login"
           value={values.login}
           onChange={changeHandler}
         />
-        <Input2
+        <Input
           type="password"
           name="password"
           placeholder="password"

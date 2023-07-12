@@ -2,17 +2,12 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { logOutUser } from "../features/user/userSlise";
 import React, { useEffect } from "react";
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import Events from "../components/Events";
 
 const PersonamArea = () => {
   const dispatch = useDispatch();
   return (
     <Wrapper>
-      <Navbar />
-      <Sidebar />
-      <Events />
+      <button onClick={() => dispatch(logOutUser())}>LogOut</button>
     </Wrapper>
   );
 };

@@ -37,8 +37,7 @@ function App() {
             <Route path="/a-panel" element={<AdminPage />} />
           </Route>
 
-          <Route path="/landing" element={<Landing />} />
-          <Route path="/admin" element={<AdminLogin />} />
+          {/* <Route path="/landing" element={<Landing />} /> */}
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/register" element={<Register />} />
         </Routes>
@@ -49,11 +48,11 @@ function App() {
             duration: 5000,
             style: {
               padding: "1rem",
-              backgroundColor: "#ffdfff",
+              // backgroundColor: "#ffdfff",
               fontSize: "1rem",
-              color: "#17132a",
+              // color: "#17132a",
               // borderColor: "#ff00ff",
-              border: "2px solid #ff00ff",
+              // border: "2px solid #ff00ff",
             },
           }}
         />

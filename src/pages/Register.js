@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import FormRow from "../components/FormRow";
-import { Link } from "react-router-dom";
-import { HiArrowNarrowLeft } from "react-icons/hi";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../features/user/userSlise";
 import toast from "react-hot-toast";
+import Input from "../components-special/Input";
+import Button from "../components-special/Button";
 
 const initialState = {
   name: "",
@@ -28,7 +27,7 @@ const Register = () => {
     e.preventDefault();
     const { name, email, password, isMember } = values;
     if (!email || !password || (!isMember && !name)) {
-      toast.error("Введите все значения", { theme: "colored" });
+      toast.error("Введите все значения");
       return;
     }
     if (isMember) {
@@ -52,43 +51,44 @@ const Register = () => {
   return (
     <Wrapper>
       <form className="form" onSubmit={onSubmit}>
-        <h1>Shop</h1>
+        <div className="header">
+          <p>можно добавить текст или логотип</p>
+        </div>
         <h3 style={{ textAlign: "center" }}>
-          {values.isMember ? "Вход" : "Регистрация"}
+          {values.isMember ? "Авторизация" : "Регистрация"}
         </h3>
         <div className="input-content">
           {!values.isMember && (
-            <FormRow
+            <Input
               placeholder="Name"
               type="text"
               name="name"
               value={values.name}
-              changeHandler={changeHandler}
+              onChange={changeHandler}
             />
           )}
-          <FormRow
+          <Input
             placeholder="Email"
             type="email"
             name="email"
             value={values.email.toLowerCase()}
-            changeHandler={changeHandler}
+            onChange={changeHandler}
           />
-          <FormRow
+          <Input
             placeholder="Password"
             type="password"
             name="password"
             value={values.password}
-            changeHandler={changeHandler}
+            onChange={changeHandler}
           />
         </div>
         <div className="actions">
-          <button
+          <Button
             type="submit"
             className="btn button-form"
             disabled={isLoading}
-          >
-            {isLoading ? "Думаю ..." : "Подтвердить"}
-          </button>
+            text={isLoading ? "Думаю ..." : "Подтвердить"}
+          />
         </div>
         <div style={{ textAlign: "center" }}>
           <p>
@@ -98,39 +98,36 @@ const Register = () => {
               onClick={toggleMemberHandler}
               className="member-btn"
             >
-              {values.isMember ? " Регистрация" : "Вход"}
+              {values.isMember ? " Регистрация" : "Авторизация"}
             </button>
           </p>
         </div>
-        <Link to="/">
-          <HiArrowNarrowLeft />
-        </Link>
       </form>
     </Wrapper>
   );
 };
 const Wrapper = styled.main`
+  .form {
+    width: 90vw;
+    max-width: var(--fixed-width);
+    /* background-color: var(--clr-primary-8); */
+    /* box-shadow: var(--shadow-2); */
+    padding: 2rem 2.5rem;
+    margin: 3rem auto;
+    transition: var(--transition);
+    /* border-radius: 40px; */
+  }
   input {
     margin: 0.5rem;
   }
-  svg {
-    color: var(--clr-primary-5);
-
-    width: 2rem;
-    border: 1px solid var(--theme-ui-colors-green70);
-    font-size: 1.5rem;
-  }
-  svg:hover {
-    background: var(--clr-primary-10);
-    transition: var(--transition);
-    border-radius: 40px;
+  .header {
+    text-align: center;
+    margin: 1rem;
   }
   .input-content {
     text-align: center;
   }
-  h1 {
-    text-align: center;
-  }
+
   button {
     font-size: 1.3rem;
   }
@@ -149,24 +146,7 @@ const Wrapper = styled.main`
       color: var(--clr-primary-4);
     }
   }
-  .input-decoration {
-    border: none;
-    border-bottom: 7px solid var(--clr-primary-5);
-    font-size: 1.3rem;
-    caret-color: var(--clr-primary-5);
-    background-color: var(--clr-primary-10);
 
-    :focus-visible {
-      outline: none;
-      background-color: var(--clr-primary-10);
-      ::placeholder {
-        font-size: 1rem;
-      }
-    }
-    ::placeholder {
-      color: gray;
-    }
-  }
   @media (min-width: 992px) {
   }
 `;
