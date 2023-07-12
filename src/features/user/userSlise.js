@@ -61,11 +61,11 @@ const userSlice = createSlice({
       state.token = token;
       addUserToLocalStorage(user);
       addTokenToLocalStorage(token);
-      toast.success(`Hi ${user.name} !`, { theme: "colored" });
+      toast.success(`Привет ${user.name} !`);
     });
     builder.addCase(registerUser.rejected, (state, { payload }) => {
       state.isLoading = false;
-      toast.error(payload, { theme: "colored" });
+      toast.error(payload);
     });
 
     // login
@@ -79,7 +79,7 @@ const userSlice = createSlice({
       state.token = token;
       addUserToLocalStorage(user);
       addTokenToLocalStorage(token);
-      toast.success(`Добро пожаловать  ${user.name} !`, { theme: "colored" });
+      toast.success(`Добро пожаловать  ${user.name} !`);
     });
     builder.addCase(loginUser.rejected, (state, { payload }) => {
       state.isLoading = false;
