@@ -28,18 +28,15 @@ const Wrapper = styled.div`
     border-radius: 5px;
     font-size: 100%;
     margin-right: 1rem;
+    color: var(--main-0);
+
     ::placeholder {
       color: var(--gray-1);
     }
     :focus-visible {
       outline: none;
     }
-    :focus {
-      color: var(--gray-2);
-    }
-    :active {
-      color: var(--gray-2);
-    }
+
     :hover {
       ::placeholder {
         transition: 0.5s;

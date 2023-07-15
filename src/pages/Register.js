@@ -128,7 +128,9 @@ const Wrapper = styled.main`
   .input-content {
     text-align: center;
   }
-
+  h3 {
+    color: var(--main-0);
+  }
   button {
     font-size: 1.3rem;
   }
@@ -139,12 +141,12 @@ const Wrapper = styled.main`
   .member-btn {
     background: transparent;
     border: transparent;
-    color: var(--clr-primary-2);
+    color: var(--main-0);
     cursor: pointer;
     font-size: 1rem;
-    transition: var(--transition);
+    transition: var(--transition2);
     :hover {
-      color: var(--clr-primary-4);
+      text-decoration: underline;
     }
   }
 

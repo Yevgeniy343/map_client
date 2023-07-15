@@ -13,11 +13,14 @@ const Wrapper = styled.div`
     color: var(--gray-2);
     padding: 0.3rem 0.6rem;
     background-color: transparent;
-    transition: 0.5s;
+    transition: 0.8s;
     border-radius: 5px;
+    color: var(--main-0);
+    border-color: var(--main-0);
     cursor: pointer;
     :hover {
-      background-color: var(--clr-grey-8);
+      background-color: var(--main-0);
+      color: white;
     }
     :active {
       background-color: var(--clr-grey-9);

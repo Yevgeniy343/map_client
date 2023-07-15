@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BsEyeSlash, BsEye } from "react-icons/bs";
 
 const InputPass = ({ type, placeholder, value, name, onChange }) => {
-  const [showPass, setShowPass] = useState(true);
+  const [showPass, setShowPass] = useState(false);
 
   const showPassHandler = () => {
     setShowPass(!showPass);
@@ -39,17 +39,13 @@ const Wrapper = styled.div`
     border-radius: 5px;
     font-size: 100%;
     margin: 0;
+    color: var(--main-0);
+
     ::placeholder {
       color: var(--gray-1);
     }
     :focus-visible {
       outline: none;
-    }
-    :focus {
-      color: var(--gray-2);
-    }
-    :active {
-      color: var(--gray-2);
     }
     :hover {
       ::placeholder {
@@ -69,9 +65,10 @@ const Wrapper = styled.div`
     svg {
       font-size: 1.5rem;
       cursor: pointer;
+      color: var(--clr-grey-4);
       transition: var(--transition2);
       :hover {
-        color: var(--clr-grey-3);
+        color: var(--main-0);
       }
     }
   }
