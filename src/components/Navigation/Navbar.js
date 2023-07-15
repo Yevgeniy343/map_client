@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import logo from "../../images/esebb1n53kocs4kg80gw8owg8k4o80.webp";
-import { FaBars } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import {
   sidebarOpenHandler,
   logOutUser,
@@ -74,7 +72,7 @@ const NavContainer = styled.nav`
     }
   }
   .nav-toggle {
-    margin-top: 1.5rem;
+    /* margin-top: 1.5rem; */
     background: transparent;
     border: transparent;
     transition: var(--transition2);
