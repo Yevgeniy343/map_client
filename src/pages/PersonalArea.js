@@ -3,34 +3,21 @@ import { logOutUser } from "../features/user/userSlise";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../components-special/Button";
+import NavBar from "../components/Navigation/Navbar";
+import SideBar from "../components/Navigation/Sidebar";
 
 const PersonamArea = () => {
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   return (
     <Wrapper>
-      <p>
-        Личный кабинет пользователя <span>{user.name}</span>{" "}
-      </p>
-      <Button onClick={() => dispatch(logOutUser())} text="LogOut" />
+      <NavBar />
+      <SideBar />
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  P {
-    margin: 1rem;
-    font-size: 1rem;
-  }
-  span {
-    color: var(--clr-grey-6);
-    font-size: 1.3rem;
-  }
   @media (min-width: 576px) {
   }
   @media (min-width: 768px) {
