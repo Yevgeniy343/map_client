@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../features/user/userSlise";
 import toast from "react-hot-toast";
 import Input from "../components-special/Input";
+import InputPass from "../components-special/InputPass";
 import Button from "../components-special/Button";
 
 const initialState = {
@@ -74,7 +75,7 @@ const Register = () => {
             value={values.email.toLowerCase()}
             onChange={changeHandler}
           />
-          <Input
+          <InputPass
             placeholder="Password"
             type="password"
             name="password"
@@ -118,7 +119,7 @@ const Wrapper = styled.main`
     /* border-radius: 40px; */
   }
   input {
-    margin: 0.5rem;
+    margin: 0.5rem 0;
   }
   .header {
     text-align: center;

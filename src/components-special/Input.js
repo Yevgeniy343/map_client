@@ -15,14 +15,19 @@ const Input = ({ type, placeholder, value, name, onChange }) => {
   );
 };
 const Wrapper = styled.div`
-  margin: auto;
+  /* margin: auto; */
+  width: 100%;
+
   input {
+    box-sizing: border-box;
+    padding: 1rem;
     border: none;
     background: #f4f4f4;
     height: 50px;
-    width: 100%;
+    width: calc(100%);
     border-radius: 5px;
     font-size: 100%;
+    margin-right: 1rem;
     ::placeholder {
       color: var(--gray-1);
     }
