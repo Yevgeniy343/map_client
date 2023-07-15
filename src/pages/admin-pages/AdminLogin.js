@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { loginAdmin } from "../../features/adminSlice";
 import Button from "../../components-special/Button";
 import Input from "../../components-special/Input";
+import InputPass from "../../components-special/InputPass";
 
 const initialState = {
   login: "",
@@ -53,7 +54,7 @@ const AdminLogin = () => {
           value={values.login}
           onChange={changeHandler}
         />
-        <Input
+        <InputPass
           type="password"
           name="password"
           placeholder="password"
@@ -82,20 +83,7 @@ const Wrapper = styled.div`
     margin-bottom: 20%;
   }
   input {
-    margin: 1rem;
-    width: 80%;
-    background-color: transparent;
-    border: none;
-    border-bottom: 3px solid var(--text);
-    color: var(--text);
-
-    /* font-family: "NeverSmile"; */
-    caret-color: var(--text);
-    font-size: 1.7rem;
-
-    :focus-visible {
-      outline: none;
-    }
+    margin: 0.5rem 0;
   }
   .btn-admin {
     margin-top: 3rem;

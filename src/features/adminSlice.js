@@ -35,9 +35,11 @@ const adminSlice = createSlice({
     });
     builder.addCase(loginAdmin.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.admin = payload.admin;
-      addAdminToLocalStorage();
-      toast.success(`Привет !`);
+      const admin = payload.admin;
+      state.admin = admin;
+      console.log(payload);
+      addAdminToLocalStorage(admin);
+      toast.success(`Привет Админ !`);
     });
     builder.addCase(loginAdmin.rejected, (state, { payload }) => {
       state.isLoading = false;

@@ -29,8 +29,8 @@ export const getTokenFromLocalStorage = () => {
 
 // admin
 
-export const addAdminToLocalStorage = (user) => {
-  localStorage.setItem("admin", JSON.stringify(user));
+export const addAdminToLocalStorage = (admin) => {
+  localStorage.setItem("admin", JSON.stringify(admin));
 };
 
 export const removeAdminFromLocalStorage = () => {
