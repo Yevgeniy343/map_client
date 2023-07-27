@@ -10,16 +10,18 @@ const Button = ({ text, onClick }) => {
 };
 const Wrapper = styled.div`
   button {
+    font-family: "Philosopher", sans-serif;
     color: var(--gray-2);
-    padding: 0.3rem 0.6rem;
-    background-color: transparent;
+    padding: 0.4rem 0.7rem;
+    background-color: var(--blue-2);
     transition: 0.8s;
-    border-radius: 5px;
-    color: var(--main-0);
-    border-color: var(--main-0);
+    border-radius: 300px;
+    color: white;
+    border: none;
+    font-size: 1.1rem;
     cursor: pointer;
     :hover {
-      background-color: var(--main-0);
+      background-color: var(--blue-0);
       color: white;
     }
     :active {

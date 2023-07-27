@@ -61,7 +61,7 @@ const AdminLogin = () => {
           value={values.password}
           onChange={changeHandler}
         />
-        <Button className="btn btn-admin" type="submit" text="Войти" />
+        <Button type="submit" text="Войти" />
       </form>
     </Wrapper>
   );

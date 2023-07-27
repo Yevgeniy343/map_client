@@ -33,13 +33,11 @@ const Wrapper = styled.div`
   input {
     padding: 1rem;
     border: none;
-    background: #f4f4f4;
+    background: var(--gray-1);
     height: 50px;
     width: 100%;
-    border-radius: 5px;
     font-size: 100%;
-    margin: 0;
-    color: var(--main-0);
+    color: var(--blue-1);
 
     ::placeholder {
       color: var(--gray-1);
@@ -49,7 +47,7 @@ const Wrapper = styled.div`
     }
     :hover {
       ::placeholder {
-        transition: 0.5s;
+        transition: var(--transition);
       }
     }
   }
@@ -59,16 +57,15 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f4f4f4;
-    /* padding: 1rem; */
+    background: var(--gray-1);
 
     svg {
       font-size: 1.5rem;
       cursor: pointer;
-      color: var(--clr-grey-4);
+      color: var(--blue-05);
       transition: var(--transition2);
       :hover {
-        color: var(--main-0);
+        color: var(--blue-0);
       }
     }
   }

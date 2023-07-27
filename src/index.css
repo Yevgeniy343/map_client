@@ -50,7 +50,6 @@ Variables
   --purple-3: #ffa3ff;
   --purple-4: #ff00ff;
 
-  --gray-1: #bfbfbf;
   --gray-2: #17132a;
 
   --lilac-1: #cdb1f9;
@@ -59,6 +58,19 @@ Variables
   --main-0: #6b2351;
   --main-1: #b86499;
   --main-2: #b88aa8;
+
+  --blue-0: #2266ba;
+  --blue-05: #6ba2c0;
+  --blue-1: #3894c4;
+  --blue-2: #3894c4;
+  --blue-3: #c0e4ec;
+  --green-1: #75bd2d;
+  --green-2: #75bd2d;
+  --purple-1: #f5386e;
+  --purple-2: #da1c4b;
+  --gray-1: #ededed;
+
+  --red-1-: #e93a51;
 }
 /*
 =============== 

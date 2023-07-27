@@ -9,10 +9,8 @@ import InputPass from "../components-special/InputPass";
 import Button from "../components-special/Button";
 
 const initialState = {
-  name: "",
-  email: "",
+  login: "",
   password: "",
-  isMember: true,
 };
 
 const Register = () => {
@@ -26,21 +24,15 @@ const Register = () => {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    const { name, email, password, isMember } = values;
-    if (!email || !password || (!isMember && !name)) {
+    const { login, password } = values;
+    if (!login || !password) {
       toast.error("Введите все значения");
       return;
     }
-    if (isMember) {
-      dispatch(loginUser({ email: email, password: password }));
-      return;
-    }
-    dispatch(registerUser({ name, email, password }));
+
+    dispatch(registerUser({ login, password }));
   };
 
-  const toggleMemberHandler = () => {
-    setValues({ ...values, isMember: !values.isMember });
-  };
   useEffect(() => {
     if (user) {
       setTimeout(() => {
@@ -52,31 +44,17 @@ const Register = () => {
   return (
     <Wrapper>
       <form className="form" onSubmit={onSubmit}>
-        <div className="header">
-          <p>можно добавить текст или логотип</p>
-        </div>
-        <h3 style={{ textAlign: "center" }}>
-          {values.isMember ? "Авторизация" : "Регистрация"}
-        </h3>
+        <h3>Авторизация</h3>
         <div className="input-content">
-          {!values.isMember && (
-            <Input
-              placeholder="Name"
-              type="text"
-              name="name"
-              value={values.name}
-              onChange={changeHandler}
-            />
-          )}
           <Input
-            placeholder="Email"
-            type="email"
-            name="email"
-            value={values.email.toLowerCase()}
+            placeholder="login"
+            type="text"
+            name="login"
+            value={values.login.toLowerCase()}
             onChange={changeHandler}
           />
           <InputPass
-            placeholder="Password"
+            placeholder="password"
             type="password"
             name="password"
             value={values.password}
@@ -88,20 +66,8 @@ const Register = () => {
             type="submit"
             className="btn button-form"
             disabled={isLoading}
-            text={isLoading ? "Думаю ..." : "Подтвердить"}
+            text={isLoading ? "Думаю ..." : "Войти"}
           />
-        </div>
-        <div style={{ textAlign: "center" }}>
-          <p>
-            {values.isMember ? "Нет регистрации? " : "Уже есть регистрация? "}
-            <button
-              type="button"
-              onClick={toggleMemberHandler}
-              className="member-btn"
-            >
-              {values.isMember ? " Регистрация" : "Авторизация"}
-            </button>
-          </p>
         </div>
       </form>
     </Wrapper>
@@ -129,27 +95,17 @@ const Wrapper = styled.main`
     text-align: center;
   }
   h3 {
-    color: var(--main-0);
+    color: var(--blue-1);
   }
-  button {
-    font-size: 1.3rem;
-  }
+
   .actions {
     margin: 1rem;
     text-align: center;
   }
-  .member-btn {
-    background: transparent;
-    border: transparent;
-    color: var(--main-0);
-    cursor: pointer;
-    font-size: 1rem;
-    transition: var(--transition2);
-    :hover {
-      text-decoration: underline;
-    }
-  }
 
+  h3 {
+    text-align: center;
+  }
   @media (min-width: 992px) {
   }
 `;

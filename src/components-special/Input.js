@@ -22,13 +22,11 @@ const Wrapper = styled.div`
     box-sizing: border-box;
     padding: 1rem;
     border: none;
-    background: #f4f4f4;
+    background: var(--gray-1);
     height: 50px;
     width: calc(100%);
-    border-radius: 5px;
     font-size: 100%;
-    margin-right: 1rem;
-    color: var(--main-0);
+    color: var(--blue-1);
 
     ::placeholder {
       color: var(--gray-1);
