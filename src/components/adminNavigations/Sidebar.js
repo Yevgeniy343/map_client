@@ -5,6 +5,8 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { sidebarCloseHandler } from "../../features/user/userSlise";
+import { sublinks } from "../../assets/data";
+import Button from "../../components-special/Button";
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -20,8 +22,7 @@ const SideBar = () => {
     <SidebarContainer>
       <aside className={isSidebarOpen ? `sidebar show-sidebar` : `sidebar`}>
         <div className="sidebar-header">
-          <p>logo</p>
-          <div></div>
+          <p className="logo">logo</p>
           <button
             className="close-btn"
             type="button"
@@ -31,21 +32,40 @@ const SideBar = () => {
           </button>
         </div>
         <ul className="links">
-          <li>
+          {sublinks.map((item) => {
+            const { links, page, pageId } = item;
+            return (
+              <li key={pageId}>
+                <p>{page}</p>
+                <div className="sidebar-sublinks">
+                  {links.map((link) => {
+                    const { url, label, id } = link;
+                    return (
+                      <div className="sublink" key={id}>
+                        <p className="sublink-label">{label}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </li>
+            );
+          })}
+          {/* <li>
             <p>Сотрудники</p>
           </li>
           <li onClick={logOutHandler}>
             <p>Выйти</p>
-          </li>
+          </li> */}
         </ul>
+        <div className="actions">
+          <Button text="Выйти" onClick={() => dispatch(logOutAdmin())} />
+        </div>
       </aside>
     </SidebarContainer>
   );
 };
 
 const SidebarContainer = styled.div`
-  text-align: center;
-  border-radius: 300px;
   .links {
     display: flex;
     flex-direction: column;
@@ -56,20 +76,24 @@ const SidebarContainer = styled.div`
   li {
     font-size: 2rem;
     margin: 0;
-    padding: 2rem;
-    padding-left: 2rem;
+    padding: 1rem;
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
     transition: var(--transition2);
     width: 100%;
-    cursor: pointer;
     p {
-      color: var(--blue-0);
-      margin-left: 1rem;
+      color: white;
     }
-    :hover {
-      padding-left: 2.5rem;
-      background-color: var(--blue-3);
+  }
+  .sidebar-sublinks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 1rem;
+    .sublink {
+      margin-right: 1rem;
+      .sublink-label {
+        font-size: 1rem;
+      }
     }
   }
   .sidebar-header {
@@ -77,7 +101,6 @@ const SidebarContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    background-color: var(--blue-3);
     margin: 1rem 0.2rem;
     border-radius: 300px;
   }
@@ -88,12 +111,13 @@ const SidebarContainer = styled.div`
     color: var(--blue-0);
     transition: var(--transition);
     cursor: pointer;
-    margin-top: 0.2rem;
   }
 
   .logo {
     justify-self: center;
-    height: 60px;
+    /* height: 60px; */
+    color: white;
+    font-size: 2rem;
   }
   .links {
     margin-bottom: 2rem;
@@ -108,6 +132,7 @@ const SidebarContainer = styled.div`
     height: 100%;
     transition: var(--transition);
     transform: translate(-100%);
+    background-color: var(--blue-1);
     z-index: -1;
   }
   .show-sidebar {
@@ -117,15 +142,20 @@ const SidebarContainer = styled.div`
   .logo {
     cursor: pointer;
   }
-  button {
-    float: right;
+  .actions {
+    display: flex;
+    margin: 2rem;
+    justify-content: flex-end;
   }
   svg {
     font-size: 2.3rem;
     color: var(--blue-0);
     transition: var(--transition2);
+    background-color: white;
+    border-radius: 5px;
     :hover {
-      color: var(--blue-1);
+      scale: calc(1.05);
+      box-shadow: var(--shadow-white-1);
     }
   }
   @media screen and (min-width: 992px) {

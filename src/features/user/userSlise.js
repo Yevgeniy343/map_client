@@ -15,6 +15,7 @@ const initialState = {
   user: getUserFromLocalStorage(),
   token: getTokenFromLocalStorage(),
   isSidebarOpen: false,
+  submenuLocation: [],
 };
 
 export const registerUser = createAsyncThunk(
@@ -47,6 +48,8 @@ const userSlice = createSlice({
     sidebarOpenHandler: (state) => {
       state.isSidebarOpen = true;
     },
+    openSubmenuHandler: (state, { payload }) => {},
+    closeSubmenuHandler: (state) => {},
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.pending, (state) => {
@@ -88,6 +91,11 @@ const userSlice = createSlice({
   },
 });
 
-export const { logOutUser, sidebarCloseHandler, sidebarOpenHandler } =
-  userSlice.actions;
+export const {
+  logOutUser,
+  sidebarCloseHandler,
+  sidebarOpenHandler,
+  openSubmenuHandler,
+  closeSubmenuHandler,
+} = userSlice.actions;
 export default userSlice.reducer;

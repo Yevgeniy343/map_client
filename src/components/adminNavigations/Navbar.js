@@ -4,43 +4,50 @@ import { sidebarOpenHandler } from "../../features/user/userSlise";
 import { useDispatch, useSelector } from "react-redux";
 import { logOutAdmin } from "../../features/adminSlice";
 import { AiOutlineMenu } from "react-icons/ai";
-
 import { useNavigate } from "react-router-dom";
+import {
+  openSubmenuHandler,
+  closeSubmenuHandler,
+} from "../../features/user/userSlise";
+import SubMenuNav from "../../components/adminNavigations/SubmenuNav";
+import { nanoid } from "nanoid";
 
 const NavBar = () => {
-  const { user, isModal } = useSelector((store) => store.user);
+  console.log(nanoid());
+  const { user, isModal, isSubmenu } = useSelector((store) => store.user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const logOutHandler = () => {
     dispatch(logOutAdmin());
   };
+
   return (
-    <div>
-      <NavContainer>
-        <div className="nav-center">
-          <div className="nav-header">
-            <div className="logo">logo</div>
-            <button
-              type="button"
-              className="nav-toggle"
-              onClick={() => dispatch(sidebarOpenHandler())}
-            >
-              {" "}
-              <AiOutlineMenu />
-            </button>
+    <NavContainer>
+      <div className="nav-center">
+        <div className="nav-header">
+          <div className="logo">
+            <h3>Logo</h3>
           </div>
-          <ul className="nav-links">
-            <li>
-              <p>Сотрудники</p>
-            </li>
-            <li onClick={logOutHandler}>
-              <p>Выход</p>
-            </li>
-          </ul>
+          <button
+            type="button"
+            className="nav-toggle"
+            onClick={() => dispatch(sidebarOpenHandler())}
+          >
+            <AiOutlineMenu />
+          </button>
         </div>
-      </NavContainer>
-    </div>
+        <ul className="nav-links">
+          <li>
+            <p className="link-btn">Сотрудники</p>
+          </li>
+          <li onClick={logOutHandler}>
+            <p className="link-btn">Выход</p>
+          </li>
+        </ul>
+      </div>
+    </NavContainer>
   );
 };
 
@@ -49,9 +56,9 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--blue-3);
+  /* background-color: var(--blue-3);
   border-radius: 300px;
-  margin: 1rem 0.2rem;
+  margin: 1rem 0.2rem; */
 
   .nav-center {
     width: 90vw;
@@ -68,13 +75,15 @@ const NavContainer = styled.nav`
     }
   }
   .nav-toggle {
-    /* margin-top: 1.5rem; */
-    background: transparent;
+    background: white;
     border: transparent;
     transition: var(--transition2);
     color: var(--blue-0);
+    border-radius: 5px;
+
     :hover {
-      color: var(--main-0);
+      scale: calc(1.05);
+      box-shadow: var(--shadow-white-1);
     }
     cursor: pointer;
   }
@@ -120,6 +129,11 @@ const NavContainer = styled.nav`
     transition: var(--transition2);
     :hover {
       color: var(--blue-05);
+    }
+  }
+  .logo {
+    h3 {
+      color: white;
     }
   }
   @media (min-width: 992px) {

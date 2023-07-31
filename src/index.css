@@ -71,6 +71,9 @@ Variables
   --gray-1: #ededed;
 
   --red-1-: #e93a51;
+
+  --shadow-white-1: rgba(255, 255, 255, 0.56) 0px 10px 26px 0px,
+    rgba(255, 255, 255, 0.06) 0px 0px 0px 1px;
 }
 /*
 =============== 
@@ -91,6 +94,7 @@ Global Styles
 body {
   font-family: "Philosopher", sans-serif;
   height: 100%;
+  background-color: var(--blue-1);
 }
 html {
   height: 100%;

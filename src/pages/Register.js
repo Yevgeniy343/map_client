@@ -95,7 +95,7 @@ const Wrapper = styled.main`
     text-align: center;
   }
   h3 {
-    color: var(--blue-1);
+    color: white;
   }
 
   .actions {

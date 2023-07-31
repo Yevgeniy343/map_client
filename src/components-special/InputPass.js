@@ -40,7 +40,7 @@ const Wrapper = styled.div`
     color: var(--blue-1);
 
     ::placeholder {
-      color: var(--gray-1);
+      color: var(--blue-1);
     }
     :focus-visible {
       outline: none;
