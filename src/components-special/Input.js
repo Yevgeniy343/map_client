@@ -26,6 +26,7 @@ const Wrapper = styled.div`
     height: 50px;
     width: calc(100%);
     font-size: 100%;
+
     color: var(--blue-1);
 
     ::placeholder {
