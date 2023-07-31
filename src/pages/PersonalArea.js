@@ -3,16 +3,14 @@ import { logOutUser } from "../features/user/userSlise";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "../components-special/Button";
-import NavBar from "../components/Navigation/Navbar";
-import SideBar from "../components/Navigation/Sidebar";
 
 const PersonamArea = () => {
   const { user } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   return (
     <Wrapper>
-      <NavBar />
-      <SideBar />
+      {/* <NavBar />
+      <SideBar /> */}
     </Wrapper>
   );
 };

@@ -3,15 +3,19 @@ import styled from "styled-components";
 import Button from "../../components-special/Button";
 import { logOutAdmin } from "../../features/adminSlice";
 import { useSelector, useDispatch } from "react-redux";
+import Navbar from "../../components/adminNavigations/Navbar";
+import Sidebar from "../../components/adminNavigations/Sidebar";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
 
   return (
-    <Wrapper>
-      <h3>Admin panel</h3>
-      <Button onClick={() => dispatch(logOutAdmin())} text="Выход" />
-    </Wrapper>
+    <div>
+      <Navbar />
+      <Sidebar />
+
+      <Wrapper></Wrapper>
+    </div>
   );
 };
 

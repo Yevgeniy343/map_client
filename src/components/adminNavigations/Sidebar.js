@@ -1,16 +1,10 @@
 import React from "react";
-
-import logo from "../../images/esebb1n53kocs4kg80gw8owg8k4o80.webp";
-
 import { AiOutlineClose } from "react-icons/ai";
-import { BiUser } from "react-icons/bi";
-import { GiExitDoor } from "react-icons/gi";
-
+import { logOutAdmin } from "../../features/adminSlice";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { sidebarCloseHandler } from "../../features/user/userSlise";
-import { toggleHandler, logOutUser } from "../../features/user/userSlise";
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -18,15 +12,15 @@ const SideBar = () => {
 
   const logOutHandler = () => {
     dispatch(sidebarCloseHandler());
-    dispatch(logOutUser());
+    dispatch(logOutAdmin());
   };
 
-  const { isSidebarOpen, user } = useSelector((store) => store.user);
+  const { isSidebarOpen } = useSelector((store) => store.user);
   return (
     <SidebarContainer>
       <aside className={isSidebarOpen ? `sidebar show-sidebar` : `sidebar`}>
         <div className="sidebar-header">
-          <img src={logo} alt="logo" className="logo" />
+          <p>logo</p>
           <div></div>
           <button
             className="close-btn"
@@ -38,11 +32,9 @@ const SideBar = () => {
         </div>
         <ul className="links">
           <li>
-            <BiUser />
-            <p>Профайл</p>
+            <p>Сотрудники</p>
           </li>
           <li onClick={logOutHandler}>
-            <GiExitDoor />
             <p>Выйти</p>
           </li>
         </ul>
@@ -53,7 +45,7 @@ const SideBar = () => {
 
 const SidebarContainer = styled.div`
   text-align: center;
-  background-color: white;
+  border-radius: 300px;
   .links {
     display: flex;
     flex-direction: column;
@@ -66,18 +58,18 @@ const SidebarContainer = styled.div`
     margin: 0;
     padding: 2rem;
     padding-left: 2rem;
-    color: var(--color-4);
     display: flex;
     justify-content: flex-start;
     transition: var(--transition2);
     width: 100%;
+    cursor: pointer;
     p {
-      color: var(--main-0);
+      color: var(--blue-0);
       margin-left: 1rem;
     }
     :hover {
       padding-left: 2.5rem;
-      background-color: var(--main-2);
+      background-color: var(--blue-3);
     }
   }
   .sidebar-header {
@@ -85,19 +77,20 @@ const SidebarContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
+    background-color: var(--blue-3);
+    margin: 1rem 0.2rem;
+    border-radius: 300px;
   }
   .close-btn {
     font-size: 2rem;
     background: transparent;
     border-color: transparent;
-    color: var(--color-4);
+    color: var(--blue-0);
     transition: var(--transition);
     cursor: pointer;
-
     margin-top: 0.2rem;
   }
-  .close-btn:hover {
-  }
+
   .logo {
     justify-self: center;
     height: 60px;
@@ -106,16 +99,13 @@ const SidebarContainer = styled.div`
     margin-bottom: 2rem;
     margin: auto;
   }
-  li {
-    cursor: pointer;
-  }
+
   .sidebar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: white;
     transition: var(--transition);
     transform: translate(-100%);
     z-index: -1;
@@ -132,10 +122,10 @@ const SidebarContainer = styled.div`
   }
   svg {
     font-size: 2.3rem;
-    color: var(--main-0);
+    color: var(--blue-0);
     transition: var(--transition2);
     :hover {
-      color: var(--main-1);
+      color: var(--blue-1);
     }
   }
   @media screen and (min-width: 992px) {

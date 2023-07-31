@@ -1,16 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import logo from "../../images/esebb1n53kocs4kg80gw8owg8k4o80.webp";
-import {
-  sidebarOpenHandler,
-  logOutUser,
-  isModalHandler,
-} from "../../features/user/userSlise";
+import { sidebarOpenHandler } from "../../features/user/userSlise";
 import { useDispatch, useSelector } from "react-redux";
-import { GiExitDoor } from "react-icons/gi";
-
+import { logOutAdmin } from "../../features/adminSlice";
 import { AiOutlineMenu } from "react-icons/ai";
-import { BiUser } from "react-icons/bi";
+
 import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
@@ -19,30 +13,29 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   const logOutHandler = () => {
-    dispatch(logOutUser());
+    dispatch(logOutAdmin());
   };
   return (
     <div>
       <NavContainer>
         <div className="nav-center">
           <div className="nav-header">
-            <div className="logo">
-              <img src={logo} alt="logo" className="logo" />
-            </div>
+            <div className="logo">logo</div>
             <button
               type="button"
               className="nav-toggle"
               onClick={() => dispatch(sidebarOpenHandler())}
             >
+              {" "}
               <AiOutlineMenu />
             </button>
           </div>
           <ul className="nav-links">
             <li>
-              <BiUser />
+              <p>Сотрудники</p>
             </li>
             <li onClick={logOutHandler}>
-              <GiExitDoor />
+              <p>Выход</p>
             </li>
           </ul>
         </div>
@@ -56,6 +49,9 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--blue-3);
+  border-radius: 300px;
+  margin: 1rem 0.2rem;
 
   .nav-center {
     width: 90vw;
@@ -76,7 +72,7 @@ const NavContainer = styled.nav`
     background: transparent;
     border: transparent;
     transition: var(--transition2);
-    color: var(--color-4);
+    color: var(--blue-0);
     :hover {
       color: var(--main-0);
     }
@@ -86,14 +82,24 @@ const NavContainer = styled.nav`
     display: none;
     align-items: center;
   }
-  .cart-btn-wrapper {
-    display: none;
-  }
 
   li {
     cursor: pointer;
     padding: 0.5rem;
-    border-radius: 15px;
+    color: var(--blue-0);
+    :hover {
+      svg {
+        color: var(--blue-0);
+      }
+      p {
+        color: var(--blue-05);
+      }
+    }
+    p {
+      transition: var(--transition2);
+      color: var(--blue-0);
+      font-size: 1rem;
+    }
   }
   .name {
     padding: 0.5rem;
@@ -110,10 +116,10 @@ const NavContainer = styled.nav`
   }
   svg {
     font-size: 2.3rem;
-    color: var(--main-0);
+    color: var(--blue-0);
     transition: var(--transition2);
     :hover {
-      color: var(--main-1);
+      color: var(--blue-05);
     }
   }
   @media (min-width: 992px) {
@@ -133,11 +139,10 @@ const NavContainer = styled.nav`
         flex-direction: column;
         align-items: center;
         margin: 0 0.5rem;
-        font-size: 1.2rem;
         border: 4px solid transparent;
-      }
-      .cart-btn-wrapper {
-        display: grid;
+        p {
+          font-size: 1.2rem;
+        }
       }
     }
   }
