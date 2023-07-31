@@ -101,7 +101,7 @@ const SidebarContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    margin: 1rem 0.2rem;
+    /* margin: 1rem 0.2rem; */
     border-radius: 300px;
   }
   .close-btn {

@@ -47,6 +47,7 @@ const AdminLogin = () => {
   return (
     <Wrapper>
       <form className="content" onSubmit={onSubmit}>
+        <h3>Админ</h3>
         <Input
           type="text"
           name="login"
@@ -99,6 +100,9 @@ const Wrapper = styled.div`
     :hover {
       color: white;
     }
+  }
+  h3 {
+    color: white;
   }
   @media (min-width: 576px) {
   }
