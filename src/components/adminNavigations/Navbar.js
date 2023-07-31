@@ -80,7 +80,9 @@ const NavContainer = styled.nav`
     transition: var(--transition2);
     color: var(--blue-0);
     border-radius: 5px;
-
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
     :hover {
       scale: calc(1.05);
       box-shadow: var(--shadow-white-1);

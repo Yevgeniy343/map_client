@@ -111,6 +111,9 @@ const SidebarContainer = styled.div`
     color: var(--blue-0);
     transition: var(--transition);
     cursor: pointer;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
   }
 
   .logo {
@@ -130,14 +133,20 @@ const SidebarContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    transition: var(--transition);
-    transform: translate(-100%);
+    /* transition: var(--transition); */
+    opacity: 0;
+    /* transform: translate(-100%); */
     background-color: var(--blue-1);
-    z-index: -1;
+    /* z-index: -1; */
+    visibility: hidden;
   }
   .show-sidebar {
-    transform: translate(0);
-    z-index: 999;
+    /* transform: translate(0); */
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+    visibility: visible;
+    /* z-index: 999; */
   }
   .logo {
     cursor: pointer;
