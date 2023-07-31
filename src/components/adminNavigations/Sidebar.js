@@ -112,7 +112,7 @@ const SidebarContainer = styled.div`
     transition: var(--transition);
     cursor: pointer;
     position: absolute;
-    top: 1.5rem;
+    top: 1rem;
     right: 1.5rem;
   }
 

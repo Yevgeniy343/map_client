@@ -5,7 +5,7 @@ import { logOutAdmin } from "../../features/adminSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../components/adminNavigations/Navbar";
 import Sidebar from "../../components/adminNavigations/Sidebar";
-import SubMenuNav from "../../components/adminNavigations/SubmenuNav";
+import SubMenu from "../../components/adminNavigations/Submenu";
 import { closeSubmenuHandler } from "../../features/user/userSlise";
 
 const AdminPage = () => {
@@ -15,7 +15,7 @@ const AdminPage = () => {
     <div>
       <Navbar />
       <Sidebar />
-      {/* <SubMenuNav /> */}
+      <SubMenu />
       <Wrapper></Wrapper>
     </div>
   );
