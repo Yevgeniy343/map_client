@@ -1,19 +1,42 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { sublinks } from "../../assets/data";
-
+import { pageIdHandler } from "../../features/user/userSlise";
 import styled from "styled-components";
 
 const Submenu = () => {
   const { pageId } = useSelector((store) => store.user);
-  console.log(pageId);
+  const dispatch = useDispatch();
+  const submenuContainer = useRef(null);
+
+  // console.log(pageId);
   const currentPage = sublinks.find((item) => item.pageId === pageId);
-  console.log(currentPage);
+  // console.log(currentPage);
+
+  const mouseLeaveHandler = (e) => {
+    const submenu = submenuContainer.current;
+    const { left, right, bottom, top } = submenu.getBoundingClientRect();
+    const { clientX, clientY } = e;
+
+    if (clientX < left - 1 || clientX > right - 1 || clientY > bottom - 1) {
+      dispatch(pageIdHandler(null));
+    }
+
+    // console.log(clientX, clientY);
+    // console.log("left=", left);
+    // console.log("right=", right);
+    // console.log("bottom=", bottom);
+    // console.log("top=", top);
+  };
 
   return (
     <Wrapper>
-      <div className={currentPage ? "submenu show-submenu" : "submenu"}>
-        <h5>{currentPage?.page}</h5>
+      <div
+        className={currentPage ? "submenu show-submenu" : "submenu"}
+        onMouseLeave={mouseLeaveHandler}
+        ref={submenuContainer}
+      >
+        <h4>{currentPage?.page}</h4>
         <div
           className="submenu-links"
           style={{
@@ -43,8 +66,8 @@ const Wrapper = styled.div`
     .submenu {
       display: block;
       position: fixed;
-      top: 6rem;
-      width: 90vw;
+      top: 7rem;
+      width: 70vw;
       background-color: white;
       left: 50%;
       padding: 2rem;
@@ -55,7 +78,8 @@ const Wrapper = styled.div`
       border-radius: 5px;
       opacity: 0;
       transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
-      h5 {
+      z-index: -1;
+      h4 {
         margin-bottom: 1rem;
         color: var(--blue-0);
       }
@@ -64,6 +88,7 @@ const Wrapper = styled.div`
       visibility: visible;
       opacity: 1;
       transform: rotateX(0deg) translate(-50%);
+      z-index: 10;
     }
     .submenu-links {
       display: grid;
@@ -71,6 +96,11 @@ const Wrapper = styled.div`
       p {
         display: block;
         color: var(--blue-0);
+        font-size: 1.1rem;
+        cursor: pointer;
+        :hover {
+          text-decoration: underline;
+        }
       }
     }
   }

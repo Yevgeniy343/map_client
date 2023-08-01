@@ -32,7 +32,7 @@ export const sublinks = [
   {
     pageId: nanoid(),
     // links: "#",
-    page: "Page2",
+    page: "Группы",
     links: [
       {
         url: "#",

@@ -37,12 +37,16 @@ const NavBar = () => {
 };
 
 const NavContainer = styled.nav`
+  font-family: "Philosopher", sans-serif;
+
   height: 5rem;
   display: flex;
   align-items: center;
   justify-content: center;
 
   .nav-center {
+    /* ! important */
+    align-self: stretch;
     width: 90vw;
     margin: 0;
     max-width: var(--max-width);
@@ -105,7 +109,6 @@ const NavContainer = styled.nav`
       display: grid;
       grid-template-columns: auto 1fr auto;
       align-items: center;
-      border: 2px solid green;
     }
   }
 `;

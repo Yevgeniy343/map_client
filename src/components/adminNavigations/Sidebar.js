@@ -42,7 +42,12 @@ const SideBar = () => {
                     const { url, label, id } = link;
                     return (
                       <div className="sublink" key={id}>
-                        <p className="sublink-label">{label}</p>
+                        <p
+                          className="sublink-label"
+                          onClick={() => dispatch(sidebarCloseHandler())}
+                        >
+                          {label}
+                        </p>
                       </div>
                     );
                   })}
@@ -81,6 +86,7 @@ const SidebarContainer = styled.div`
     flex-direction: column;
     transition: var(--transition2);
     width: 100%;
+
     p {
       color: white;
     }
@@ -165,6 +171,12 @@ const SidebarContainer = styled.div`
     :hover {
       scale: calc(1.05);
       box-shadow: var(--shadow-white-1);
+    }
+  }
+  .sublink-label {
+    :hover {
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
   @media screen and (min-width: 992px) {

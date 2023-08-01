@@ -6,15 +6,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { pageIdHandler } from "../../features/user/userSlise";
 
 const Navlinks = () => {
-  const {} = useSelector((store) => store.user);
+  const { pageId } = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   const logOutHandler = () => {
     dispatch(logOutAdmin());
   };
 
+  const submenuHandler = (e) => {
+    // console.log("e.target=", e.target);
+    if (!e.target.classList.contains("nav-link")) {
+      dispatch(pageIdHandler(null));
+    }
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onMouseOver={submenuHandler}>
       <div className="nav-links">
         {sublinks.map((item) => {
           const { pageId, page } = item;
@@ -48,15 +55,22 @@ const Wrapper = styled.div`
     .nav-links {
       display: flex;
       justify-content: center;
-      border: 2px solid red;
+      /* ! important */
+      align-self: stretch;
     }
     .nav-link {
+      font-family: "Philosopher", sans-serif;
       border: transparent;
-      border: 2px solid blue;
+      /* border: 2px solid blue; */
       padding: 0 1rem;
       background: transparent;
       cursor: pointer;
       color: white;
+      font-size: 1.3rem;
+      transition: 0.3s;
+      :hover {
+        border-bottom: 1px solid white;
+      }
     }
   }
   @media (min-width: 1200px) {
