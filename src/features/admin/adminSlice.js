@@ -1,20 +1,28 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginAdminThunk } from "./admin-thunk";
+import { loginAdminThunk, remindPassThunk } from "./admin-thunk";
 import toast from "react-hot-toast";
 import {
   addAdminToLocalStorage,
   removeAdminFromLocalStorage,
   getAdminFromLocalStorage,
-} from "../utils/localStorage";
+} from "../../utils/localStorage";
 
 const initialState = {
   isLoading: false,
   admin: getAdminFromLocalStorage(),
 };
+
 export const loginAdmin = createAsyncThunk(
-  "user/loginAdmin",
-  async (user, thunkAPI) => {
-    return loginAdminThunk(`/admin/login/`, user, thunkAPI);
+  "admin/loginAdmin",
+  async (admin, thunkAPI) => {
+    return loginAdminThunk(`/admin/login/`, admin, thunkAPI);
+  }
+);
+
+export const remindPass = createAsyncThunk(
+  "admin/remindPass",
+  async (info, thunkAPI) => {
+    return remindPassThunk(`/admin/remind_pass/`, info, thunkAPI);
   }
 );
 
@@ -42,6 +50,19 @@ const adminSlice = createSlice({
       toast.success(`Привет Админ !`);
     });
     builder.addCase(loginAdmin.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    });
+
+    // remindPass
+    builder.addCase(remindPass.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(remindPass.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      toast.success(`Botvarium отправит тебе новый пароль`);
+    });
+    builder.addCase(remindPass.rejected, (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     });

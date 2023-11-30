@@ -1,33 +1,70 @@
+import styled, { ThemeProvider } from "styled-components";
 import React from "react";
-import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const Button = ({ text, onClick }) => {
+  const { theme } = useSelector((store) => store.user);
+
   return (
-    <Wrapper>
-      <button onClick={onClick}>{text}</button>
-    </Wrapper>
+    <ThemeProvider theme={theme ? DarkTheme : BaseTheme}>
+      <Wrapper>
+        <button onClick={onClick}>{text}</button>
+      </Wrapper>
+    </ThemeProvider>
   );
 };
+
+const BaseTheme = {
+  background: "var(--clr-green-dark)",
+};
+
+const DarkTheme = {
+  background: "var(--dark-button-red)",
+};
+
 const Wrapper = styled.div`
   button {
-    font-family: "Philosopher", sans-serif;
-    color: var(--gray-2);
-    padding: 0.4rem 0.7rem;
-    background-color: var(--blue-2);
-    transition: 0.8s;
-    border-radius: 300px;
+    width: max-content;
+    z-index: 1;
+    position: relative;
+    font-size: inherit;
+    font-family: inherit;
     color: white;
+    padding: 0.4rem 0.8rem;
+    outline: none;
     border: none;
-    font-size: 1.1rem;
-    cursor: pointer;
-    :hover {
-      background-color: var(--blue-0);
-      color: white;
+    background: blue;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
     }
-    :active {
-      background-color: var(--clr-grey-9);
+
+    &::before {
+      content: "";
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: blue;
+      transform-origin: center;
+      transform: scale(1);
+      border-radius: 8px;
+    }
+
+    &:hover::before {
+      transition: all 0.75s ease-in-out;
+      transform-origin: center;
+      transform: scale(1.75);
+      opacity: 0;
+      border-radius: 8px;
     }
   }
+
   @media (min-width: 576px) {
   }
   @media (min-width: 768px) {

@@ -1,10 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {
-  Landing,
-  Register,
-  PersonalArea,
-  ProtectedRoute,
-} from "./pages/index-pages";
+import { LandingPage, PersonalArea, ProtectedRoute } from "./pages/index-pages";
 import ProtectedAdmin from "./pages/ProtectedAdmin";
 import AdminLogin from "./pages/admin-pages/AdminLogin";
 import AdminPage from "./pages/admin-pages/AdminPage";
@@ -15,7 +10,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route
+          {/* <Route
             path="/"
             element={
               <ProtectedRoute>
@@ -24,7 +19,7 @@ function App() {
             }
           >
             <Route path="/personal-area" element={<PersonalArea />} />
-          </Route>
+          </Route> */}
 
           <Route
             path="/a-panel"
@@ -37,9 +32,8 @@ function App() {
             <Route path="/a-panel" element={<AdminPage />} />
           </Route>
 
-          {/* <Route path="/landing" element={<Landing />} /> */}
+          <Route path="/" element={<LandingPage />} />
           <Route path="/admin" element={<AdminLogin />} />
-          <Route path="/register" element={<Register />} />
         </Routes>
         <Toaster
           position={"top-right"}

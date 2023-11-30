@@ -1,10 +1,10 @@
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { logOutAdmin } from "../../features/adminSlice";
+import { logOutAdmin } from "../../features/admin/adminSlice";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { sidebarCloseHandler } from "../../features/user/userSlise";
+// import { sidebarCloseHandler } from "../../features/user/userSlise";
 import { sublinks } from "../../assets/data";
 import Button from "../../components-special/Button";
 
@@ -13,7 +13,7 @@ const SideBar = () => {
   const navigate = useNavigate();
 
   const logOutHandler = () => {
-    dispatch(sidebarCloseHandler());
+    // dispatch(sidebarCloseHandler());
     dispatch(logOutAdmin());
   };
 
@@ -26,7 +26,7 @@ const SideBar = () => {
           <button
             className="close-btn"
             type="button"
-            onClick={() => dispatch(sidebarCloseHandler())}
+            // onClick={() => dispatch(sidebarCloseHandler())}
           >
             <AiOutlineClose />
           </button>
@@ -44,7 +44,7 @@ const SideBar = () => {
                       <div className="sublink" key={id}>
                         <p
                           className="sublink-label"
-                          onClick={() => dispatch(sidebarCloseHandler())}
+                          // onClick={() => dispatch(sidebarCloseHandler())}
                         >
                           {label}
                         </p>

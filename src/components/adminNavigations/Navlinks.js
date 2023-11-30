@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { sublinks } from "../../assets/data";
-import { logOutAdmin } from "../../features/adminSlice";
+import { logOutAdmin } from "../../features/admin/adminSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { pageIdHandler } from "../../features/user/userSlise";
+// import { pageIdHandler } from "../../features/user/userSlise";
 
 const Navlinks = () => {
   const { pageId } = useSelector((store) => store.user);
@@ -16,7 +16,7 @@ const Navlinks = () => {
   const submenuHandler = (e) => {
     // console.log("e.target=", e.target);
     if (!e.target.classList.contains("nav-link")) {
-      dispatch(pageIdHandler(null));
+      // dispatch(pageIdHandler(null));
     }
   };
 
@@ -29,7 +29,7 @@ const Navlinks = () => {
             <button
               key={pageId}
               className="nav-link"
-              onMouseEnter={() => dispatch(pageIdHandler(pageId))}
+              // onMouseEnter={() => dispatch(pageIdHandler(pageId))}
             >
               {page}
             </button>

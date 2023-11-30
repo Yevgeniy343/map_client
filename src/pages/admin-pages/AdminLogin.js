@@ -3,10 +3,11 @@ import styled from "styled-components";
 import toast from "react-hot-toast";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginAdmin } from "../../features/adminSlice";
+import { loginAdmin } from "../../features/admin/adminSlice";
 import Button from "../../components-special/Button";
 import Input from "../../components-special/Input";
 import InputPass from "../../components-special/InputPass";
+import { remindPass } from "../../features/admin/adminSlice";
 
 const initialState = {
   login: "",
@@ -47,7 +48,7 @@ const AdminLogin = () => {
   return (
     <Wrapper>
       <form className="content" onSubmit={onSubmit}>
-        <h3>Админ</h3>
+        <h3>админ</h3>
         <Input
           type="text"
           name="login"
@@ -64,6 +65,9 @@ const AdminLogin = () => {
         />
         <Button type="submit" text="Войти" />
       </form>
+      <div className="actions">
+        <Button text="скинуть пароль" onClick={() => dispatch(remindPass())} />
+      </div>
     </Wrapper>
   );
 };
@@ -72,6 +76,7 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   .content {
@@ -101,8 +106,9 @@ const Wrapper = styled.div`
       color: white;
     }
   }
-  h3 {
-    color: white;
+  .actions {
+    display: flex;
+    /* width: 100%; */
   }
   @media (min-width: 576px) {
   }

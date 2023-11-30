@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../../components-special/Button";
-import { logOutAdmin } from "../../features/adminSlice";
+import { logOutAdmin } from "../../features/admin/adminSlice";
 import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../../components/adminNavigations/Navbar";
 import Sidebar from "../../components/adminNavigations/Sidebar";
@@ -12,21 +12,16 @@ const AdminPage = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>
-      <Navbar />
-      <Sidebar />
-      <SubMenu />
-      <Wrapper></Wrapper>
-    </div>
+    <Wrapper>
+      <Button text="logout" onClick={() => dispatch(logOutAdmin())} />
+    </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  section {
-    width: 100vw;
-    height: 20px;
-    background-color: gray;
-  }
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
   @media (min-width: 576px) {
   }
   @media (min-width: 768px) {

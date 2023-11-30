@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Input = ({ type, placeholder, value, name, onChange }) => {
+const Input = ({ type, placeholder, value, name, onChange, autoComplete }) => {
   return (
     <Wrapper>
       <input
@@ -10,36 +10,31 @@ const Input = ({ type, placeholder, value, name, onChange }) => {
         value={value}
         name={name}
         onChange={onChange}
+        autoComplete={autoComplete}
       />
     </Wrapper>
   );
 };
 const Wrapper = styled.div`
-  /* margin: auto; */
   width: 100%;
 
   input {
     box-sizing: border-box;
     padding: 1rem;
     border: none;
-    background: var(--gray-1);
-    height: 50px;
+    background: var(--gray-background);
+    height: 60px;
     width: calc(100%);
     font-size: 100%;
-
-    color: var(--blue-1);
+    border-radius: 15px;
+    border: 1px solid var(--gray-border);
 
     ::placeholder {
-      color: var(--blue-1);
+      color: var(--gray-dark);
+      transition: 0.6s;
     }
     :focus-visible {
       outline: none;
-    }
-
-    :hover {
-      ::placeholder {
-        transition: 0.5s;
-      }
     }
   }
 

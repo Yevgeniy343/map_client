@@ -30,17 +30,20 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  position: relative;
   input {
+    box-sizing: border-box;
     padding: 1rem;
     border: none;
-    background: var(--gray-1);
-    height: 50px;
-    width: 100%;
+    background: var(--gray-background);
+    height: 60px;
+    width: calc(100%);
     font-size: 100%;
-    color: var(--blue-1);
-
+    border-radius: 15px;
+    border: 1px solid var(--gray-border);
+    color: var(--gray-dark);
     ::placeholder {
-      color: var(--blue-1);
+      /* color: var(--blue-1); */
     }
     :focus-visible {
       outline: none;
@@ -58,6 +61,8 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     background: var(--gray-1);
+    position: absolute;
+    right: 5px;
 
     svg {
       font-size: 1.5rem;
