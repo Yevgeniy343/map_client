@@ -12,10 +12,16 @@ const AdminNavlinks = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const catalogPageHandler = () => {
+    navigate("/a-panel/catalog");
+  };
+
   return (
     <Wrapper>
       <div className="nav-links">
-        <button className="nav-link">Каталог</button>
+        <button className="nav-link" onClick={catalogPageHandler}>
+          Каталог
+        </button>
         <button className="nav-link">Пользователи</button>
         <Button text="logout" onClick={() => dispatch(logOutAdmin())} />
       </div>
@@ -31,8 +37,9 @@ const Wrapper = styled.div`
     align-items: baseline;
     padding: 0 2rem;
     display: none;
+
     .nav-link {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       :hover {
         :hover {
           text-decoration: underline;

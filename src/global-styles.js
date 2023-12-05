@@ -12,13 +12,31 @@ const DarkTheme = {
 const GlobalStyle = createGlobalStyle`
 
   body {
-    font-family: 'Sofia Sans Semi Condensed', sans-serif;
-    /* font-weight: 400; */
+    font-family: 'M PLUS Rounded 1c', sans-serif;
     height: 100%;
-
   }
-
-
+  .page-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  .component-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+  }
+  @media (min-width: 576px) {
+  }
+  @media (min-width: 768px) {
+  }
+  @media (min-width: 992px) {
+  }
+  @media (min-width: 1200px) {
+  }
+  @media (min-width: 1400px) {
+  }
 `;
 
 const GlobalStyles = () => {

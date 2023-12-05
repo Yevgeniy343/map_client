@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginAdminThunk, remindPassThunk } from "./admin-thunk";
+import {
+  loginAdminThunk,
+  remindPassThunk,
+  createCategoryThunk,
+} from "./admin-thunk";
 import toast from "react-hot-toast";
 import {
   addAdminToLocalStorage,
@@ -24,6 +28,13 @@ export const remindPass = createAsyncThunk(
   "admin/remindPass",
   async (info, thunkAPI) => {
     return remindPassThunk(`/admin/remind_pass/`, info, thunkAPI);
+  }
+);
+
+export const createCategory = createAsyncThunk(
+  "admin/createCategory",
+  async (info, thunkAPI) => {
+    return createCategoryThunk(`/admin/create_category/`, info, thunkAPI);
   }
 );
 
@@ -70,6 +81,19 @@ const adminSlice = createSlice({
       toast.success(`Botvarium отправит тебе новый пароль`);
     });
     builder.addCase(remindPass.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    });
+
+    // createCategory
+    builder.addCase(createCategory.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(createCategory.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      toast.success(`Категория создана `);
+    });
+    builder.addCase(createCategory.rejected, (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     });
