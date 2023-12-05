@@ -3,18 +3,18 @@ import styled from "styled-components";
 import Button from "../../components-special/Button";
 import { logOutAdmin } from "../../features/admin/adminSlice";
 import { useSelector, useDispatch } from "react-redux";
-import Navbar from "../../components/adminNavigations/Navbar";
-import Sidebar from "../../components/adminNavigations/Sidebar";
-import SubMenu from "../../components/adminNavigations/Submenu";
-import { closeSubmenuHandler } from "../../features/user/userSlise";
+import AdminNavBar from "../../admin-components/navigation/AdminNavBar";
+import AdminSideBar from "../../admin-components/navigation/AdminSideBar";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
 
   return (
-    <Wrapper>
-      <Button text="logout" onClick={() => dispatch(logOutAdmin())} />
-    </Wrapper>
+    <>
+      <AdminNavBar />
+      <AdminSideBar />
+      <Wrapper></Wrapper>
+    </>
   );
 };
 

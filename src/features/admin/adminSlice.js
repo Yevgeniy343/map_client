@@ -10,6 +10,7 @@ import {
 const initialState = {
   isLoading: false,
   admin: getAdminFromLocalStorage(),
+  isSidebarOpen: false,
 };
 
 export const loginAdmin = createAsyncThunk(
@@ -34,6 +35,12 @@ const adminSlice = createSlice({
       state.admin = null;
       removeAdminFromLocalStorage();
       toast.success(`Пока !`);
+    },
+    sidebarCloseHandler: (state) => {
+      state.isSidebarOpen = false;
+    },
+    sidebarOpenHandler: (state) => {
+      state.isSidebarOpen = true;
     },
   },
   extraReducers: (builder) => {
@@ -69,5 +76,6 @@ const adminSlice = createSlice({
   },
 });
 
-export const { logOutAdmin } = adminSlice.actions;
+export const { logOutAdmin, sidebarOpenHandler, sidebarCloseHandler } =
+  adminSlice.actions;
 export default adminSlice.reducer;
