@@ -3,26 +3,15 @@ import styled from "styled-components";
 import { AiOutlineCheck } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 
-const Checkbox = ({ label, onClick, passState }) => {
-  const [active, setActive] = useState(false);
-
+const Checkbox = ({ label, name, isActive, onCheckboxChange }) => {
   const checkboxHandler = () => {
-    if (!active) {
-      passState(true);
-      setActive(!active);
-    } else {
-      passState(false);
-      setActive(!active);
-    }
+    onCheckboxChange(isActive ? null : name);
   };
 
   return (
-    <Wrapper onClick={onClick}>
-      <div
-        className={active ? "checkbox active1" : "checkbox"}
-        onClick={checkboxHandler}
-      >
-        {active && <AiOutlineCheck />}
+    <Wrapper onClick={checkboxHandler}>
+      <div className={isActive ? "checkbox active1" : "checkbox"}>
+        {isActive && <AiOutlineCheck />}
       </div>
       <p>{label}</p>
     </Wrapper>

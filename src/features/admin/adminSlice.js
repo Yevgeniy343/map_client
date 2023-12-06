@@ -17,6 +17,7 @@ const initialState = {
   admin: getAdminFromLocalStorage(),
   isSidebarOpen: false,
   categories: [],
+  currentCategory: [{ id: "", name: "" }],
 };
 
 export const loginAdmin = createAsyncThunk(
@@ -53,6 +54,8 @@ const adminSlice = createSlice({
   reducers: {
     logOutAdmin: (state) => {
       state.admin = null;
+      state.categories = [];
+      state.currentCategory = [{ id: "", name: "" }];
       removeAdminFromLocalStorage();
       toast.success(`Пока !`);
     },
@@ -61,6 +64,9 @@ const adminSlice = createSlice({
     },
     sidebarOpenHandler: (state) => {
       state.isSidebarOpen = true;
+    },
+    currentCategoryHandler: (state, { payload }) => {
+      state.currentCategory = payload;
     },
   },
   extraReducers: (builder) => {
@@ -100,6 +106,7 @@ const adminSlice = createSlice({
     });
     builder.addCase(createCategory.fulfilled, (state, { payload }) => {
       state.isLoading = false;
+      state.categories.push(payload);
       toast.success(`Категория создана `);
     });
     builder.addCase(createCategory.rejected, (state, { payload }) => {
@@ -122,6 +129,10 @@ const adminSlice = createSlice({
   },
 });
 
-export const { logOutAdmin, sidebarOpenHandler, sidebarCloseHandler } =
-  adminSlice.actions;
+export const {
+  logOutAdmin,
+  sidebarOpenHandler,
+  sidebarCloseHandler,
+  currentCategoryHandler,
+} = adminSlice.actions;
 export default adminSlice.reducer;

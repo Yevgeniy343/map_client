@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import CategoryTree from "./CategoryTree";
+import { getCategories } from "../../features/admin/adminSlice";
 
 const AllCategories = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
   return (
     <Wrapper>
       <CategoryTree />
@@ -11,7 +17,8 @@ const AllCategories = () => {
   );
 };
 const Wrapper = styled.div`
-  border: 1px solid gray;
+  /* border: 1px solid gray;s */
+  width: 300px;
 
   @media (min-width: 576px) {
   }

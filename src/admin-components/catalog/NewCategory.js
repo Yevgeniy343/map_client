@@ -1,17 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Input2 from "../../components-special/Input2";
 import Button from "../../components-special/Button";
 import Checkbox from "../../components-special/Checkbox";
 import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import { createCategory } from "../../features/admin/adminSlice";
+import {
+  createCategory,
+  currentCategoryHandler,
+} from "../../features/admin/adminSlice";
 
 const initialState = {
   name: "",
 };
 const NewCategory = () => {
-  const [root, setRoot] = useState(false);
+  const { currentCategory } = useSelector((store) => store.admin);
+
+  const [activeCheckbox, setActiveCheckbox] = useState(null);
+  console.log(activeCheckbox);
+
+  const handleCheckboxChange = (name) => {
+    setActiveCheckbox(name);
+  };
+
   const dispatch = useDispatch();
 
   const [values, setValues] = useState(initialState);
@@ -20,24 +31,32 @@ const NewCategory = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  console.log(root);
-
-  const parentCategoryHandler = (root) => {
-    setRoot(root);
-  };
-
   const createCategoryHandler = () => {
     const { name } = values;
     if (!name) {
       toast.error("Введите все значения");
       return;
     }
-    dispatch(
-      createCategory({
-        name: name,
-        parentId: root === true ? null : "657028a0a3b9ccfaea44935e",
-      })
-    );
+    if (activeCheckbox === "root") {
+      dispatch(
+        createCategory({
+          name: name,
+          parentId: null,
+        })
+      );
+      setValues(initialState);
+      return;
+    }
+    if (activeCheckbox === "current") {
+      dispatch(
+        createCategory({
+          name: name,
+          parentId: currentCategory.id,
+        })
+      );
+      setValues(initialState);
+      return;
+    }
   };
 
   return (
@@ -55,10 +74,25 @@ const NewCategory = () => {
       </div>
       <div className="in">
         <Checkbox
-          label="Родительская категория"
-          passState={parentCategoryHandler}
+          label="Корневой каталог"
+          name="root"
+          isActive={activeCheckbox === "root"}
+          onCheckboxChange={handleCheckboxChange}
         />
       </div>
+      <div className="in">
+        <Checkbox
+          label={`Добавить в ${currentCategory?.name}`}
+          name="current"
+          isActive={activeCheckbox === "current"}
+          onCheckboxChange={handleCheckboxChange}
+        />
+      </div>
+      {/* <div className="in in2">
+        <p>Добавить в :</p>
+        {currentCategory && <p> {currentCategory.name}</p>}
+      </div> */}
+
       <div className="actions">
         <Button text="Создать" onClick={createCategoryHandler} />
       </div>
@@ -66,12 +100,16 @@ const NewCategory = () => {
   );
 };
 const Wrapper = styled.div`
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   .in {
     margin: 1rem;
     display: flex;
     flex-direction: column;
     align-items: start;
+  }
+  .in2 {
+    display: flex;
+    flex-direction: row;
   }
   .actions {
     width: 100%;
