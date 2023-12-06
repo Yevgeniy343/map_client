@@ -3,6 +3,7 @@ import {
   loginAdminThunk,
   remindPassThunk,
   createCategoryThunk,
+  getCategoriesThunk,
 } from "./admin-thunk";
 import toast from "react-hot-toast";
 import {
@@ -15,6 +16,7 @@ const initialState = {
   isLoading: false,
   admin: getAdminFromLocalStorage(),
   isSidebarOpen: false,
+  categories: [],
 };
 
 export const loginAdmin = createAsyncThunk(
@@ -35,6 +37,13 @@ export const createCategory = createAsyncThunk(
   "admin/createCategory",
   async (info, thunkAPI) => {
     return createCategoryThunk(`/admin/create_category/`, info, thunkAPI);
+  }
+);
+
+export const getCategories = createAsyncThunk(
+  "admin/get_categories",
+  async (info, thunkAPI) => {
+    return getCategoriesThunk(`/admin/get_categories/`, info, thunkAPI);
   }
 );
 
@@ -94,6 +103,19 @@ const adminSlice = createSlice({
       toast.success(`Категория создана `);
     });
     builder.addCase(createCategory.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    });
+
+    // getCategories
+    builder.addCase(getCategories.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getCategories.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.categories = payload;
+    });
+    builder.addCase(getCategories.rejected, (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     });

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Button from "../../components-special/Button";
-import { logOutAdmin } from "../../features/admin/adminSlice";
+import { getCategories } from "../../features/admin/adminSlice";
 import { useSelector, useDispatch } from "react-redux";
 import AdminNavBar from "../../admin-components/navigation/AdminNavBar";
 import AdminSideBar from "../../admin-components/navigation/AdminSideBar";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, []);
 
   return (
     <>

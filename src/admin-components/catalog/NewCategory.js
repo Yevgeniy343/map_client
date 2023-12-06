@@ -33,7 +33,10 @@ const NewCategory = () => {
       return;
     }
     dispatch(
-      createCategory({ name: name, type: "null", root: root, parentId: "null" })
+      createCategory({
+        name: name,
+        parentId: root === true ? null : "657028a0a3b9ccfaea44935e",
+      })
     );
   };
 

@@ -1,8 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import CategoryTree from "./CategoryTree";
 
 const AllCategories = () => {
-  return <Wrapper>all categories</Wrapper>;
+  return (
+    <Wrapper>
+      <CategoryTree />
+    </Wrapper>
+  );
 };
 const Wrapper = styled.div`
   border: 1px solid gray;
