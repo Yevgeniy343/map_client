@@ -27,14 +27,14 @@ const initialState = {
 export const loginAdmin = createAsyncThunk(
   "admin/loginAdmin",
   async (admin, thunkAPI) => {
-    return loginAdminThunk(`/admin/login/`, admin, thunkAPI);
+    return loginAdminThunk(`/auth_admin/login/`, admin, thunkAPI);
   }
 );
 
 export const remindPass = createAsyncThunk(
   "admin/remindPass",
   async (info, thunkAPI) => {
-    return remindPassThunk(`/admin/remind_pass/`, info, thunkAPI);
+    return remindPassThunk(`/auth_admin/remind_pass/`, info, thunkAPI);
   }
 );
 
