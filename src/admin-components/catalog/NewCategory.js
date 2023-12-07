@@ -17,7 +17,6 @@ const NewCategory = () => {
   const { currentCategory } = useSelector((store) => store.admin);
 
   const [activeCheckbox, setActiveCheckbox] = useState(null);
-  console.log(activeCheckbox);
 
   const handleCheckboxChange = (name) => {
     setActiveCheckbox(name);
@@ -88,10 +87,6 @@ const NewCategory = () => {
           onCheckboxChange={handleCheckboxChange}
         />
       </div>
-      {/* <div className="in in2">
-        <p>Добавить в :</p>
-        {currentCategory && <p> {currentCategory.name}</p>}
-      </div> */}
 
       <div className="actions">
         <Button text="Создать" onClick={createCategoryHandler} />

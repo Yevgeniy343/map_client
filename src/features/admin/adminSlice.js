@@ -10,11 +10,15 @@ import {
   addAdminToLocalStorage,
   removeAdminFromLocalStorage,
   getAdminFromLocalStorage,
+  addAdminTokenToLocalStorage,
+  removeAdminTokenFromLocalStorage,
+  getAdminTokenFromLocalStorage,
 } from "../../utils/localStorage";
 
 const initialState = {
   isLoading: false,
   admin: getAdminFromLocalStorage(),
+  token: getAdminTokenFromLocalStorage(),
   isSidebarOpen: false,
   categories: [],
   currentCategory: [{ id: "", name: "" }],
@@ -57,6 +61,7 @@ const adminSlice = createSlice({
       state.categories = [];
       state.currentCategory = [{ id: "", name: "" }];
       removeAdminFromLocalStorage();
+      removeAdminTokenFromLocalStorage();
       toast.success(`Пока !`);
     },
     sidebarCloseHandler: (state) => {
@@ -76,10 +81,11 @@ const adminSlice = createSlice({
     });
     builder.addCase(loginAdmin.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      const admin = payload.admin;
+      const { admin, token } = payload;
       state.admin = admin;
       console.log(payload);
       addAdminToLocalStorage(admin);
+      addAdminTokenToLocalStorage(token);
       toast.success(`Привет Админ !`);
     });
     builder.addCase(loginAdmin.rejected, (state, { payload }) => {

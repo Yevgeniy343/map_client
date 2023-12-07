@@ -42,3 +42,18 @@ export const getAdminFromLocalStorage = () => {
   const admin = result ? JSON.parse(result) : null;
   return admin;
 };
+
+// -------------------------
+
+export const addAdminTokenToLocalStorage = (token) => {
+  localStorage.setItem("token", token);
+};
+
+export const removeAdminTokenFromLocalStorage = () => {
+  localStorage.removeItem("token");
+};
+
+export const getAdminTokenFromLocalStorage = () => {
+  const token = localStorage.getItem("token");
+  return token;
+};

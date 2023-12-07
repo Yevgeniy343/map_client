@@ -4,6 +4,7 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 
 const Checkbox = ({ label, name, isActive, onCheckboxChange }) => {
+  console.log(isActive);
   const checkboxHandler = () => {
     onCheckboxChange(isActive ? null : name);
   };
