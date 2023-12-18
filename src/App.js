@@ -26,7 +26,8 @@ function App() {
             path="/a-panel"
             element={
               <ProtectedAdmin>
-                <AdminPage />
+                {/* <AdminPage /> */}
+                <AdminCatalogPage />
               </ProtectedAdmin>
             }
           >

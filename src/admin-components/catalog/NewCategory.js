@@ -5,22 +5,13 @@ import Button from "../../components-special/Button";
 import Checkbox from "../../components-special/Checkbox";
 import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
-import {
-  createCategory,
-  currentCategoryHandler,
-} from "../../features/admin/adminSlice";
+import { createCategory } from "../../features/admin/adminSlice";
 
 const initialState = {
   name: "",
 };
 const NewCategory = () => {
   const { currentCategory } = useSelector((store) => store.admin);
-
-  const [activeCheckbox, setActiveCheckbox] = useState(null);
-
-  const handleCheckboxChange = (name) => {
-    setActiveCheckbox(name);
-  };
 
   const dispatch = useDispatch();
 
@@ -36,26 +27,15 @@ const NewCategory = () => {
       toast.error("Введите все значения");
       return;
     }
-    if (activeCheckbox === "root") {
-      dispatch(
-        createCategory({
-          name: name,
-          parentId: null,
-        })
-      );
-      setValues(initialState);
-      return;
-    }
-    if (activeCheckbox === "current") {
-      dispatch(
-        createCategory({
-          name: name,
-          parentId: currentCategory.id,
-        })
-      );
-      setValues(initialState);
-      return;
-    }
+
+    dispatch(
+      createCategory({
+        name: name,
+        parentId: null,
+      })
+    );
+    setValues(initialState);
+    return;
   };
 
   return (
@@ -69,22 +49,6 @@ const NewCategory = () => {
           value={values.name}
           onChange={changeHandler}
           autoComplete="off"
-        />
-      </div>
-      <div className="in">
-        <Checkbox
-          label="Корневой каталог"
-          name="root"
-          isActive={activeCheckbox === "root"}
-          onCheckboxChange={handleCheckboxChange}
-        />
-      </div>
-      <div className="in">
-        <Checkbox
-          label={`Добавить в ${currentCategory?.name}`}
-          name="current"
-          isActive={activeCheckbox === "current"}
-          onCheckboxChange={handleCheckboxChange}
         />
       </div>
 
@@ -116,6 +80,7 @@ const Wrapper = styled.div`
   @media (min-width: 768px) {
   }
   @media (min-width: 992px) {
+    width: 300px;
     .in {
       input {
         width: 300px;

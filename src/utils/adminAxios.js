@@ -11,14 +11,14 @@ const customFetch = axios.create({
   baseURL: `${REACT_APP_URL_API}/api/`,
 });
 
-customFetch.interceptors.request.use((config) => {
-  const token = getAdminTokenFromLocalStorage();
-  const admin = getAdminFromLocalStorage();
-  if (admin) {
-    config.headers["Authorization"] = `Bearer ${token}`;
-  }
+// customFetch.interceptors.request.use((config) => {
+//   const token = getAdminTokenFromLocalStorage();
+//   const admin = getAdminFromLocalStorage();
+//   if (admin) {
+//     config.headers["Authorization"] = `Bearer ${token}`;
+//   }
 
-  return config;
-});
+//   return config;
+// });
 
 export default customFetch;

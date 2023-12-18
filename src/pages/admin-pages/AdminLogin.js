@@ -7,7 +7,6 @@ import { loginAdmin } from "../../features/admin/adminSlice";
 import Button from "../../components-special/Button";
 import Input from "../../components-special/Input";
 import InputPass from "../../components-special/InputPass";
-import { remindPass } from "../../features/admin/adminSlice";
 
 const initialState = {
   login: "",
@@ -65,9 +64,6 @@ const AdminLogin = () => {
         />
         <Button type="submit" text="Войти" />
       </form>
-      <div className="actions">
-        <Button text="скинуть пароль" onClick={() => dispatch(remindPass())} />
-      </div>
     </Wrapper>
   );
 };

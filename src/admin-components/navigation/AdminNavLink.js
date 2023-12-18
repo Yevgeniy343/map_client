@@ -20,9 +20,8 @@ const AdminNavlinks = () => {
     <Wrapper>
       <div className="nav-links">
         <button className="nav-link" onClick={catalogPageHandler}>
-          Каталог
+          Категории
         </button>
-        <button className="nav-link">Пользователи</button>
         <Button text="logout" onClick={() => dispatch(logOutAdmin())} />
       </div>
     </Wrapper>

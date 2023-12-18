@@ -37,11 +37,9 @@ const AdminSideBar = () => {
           </div>
           <ul>
             <li>
-              <p>Каталог</p>
+              <p>Категории</p>
             </li>
-            <li>
-              <p>Пользователи</p>
-            </li>
+
             <li>
               <Button text="logout" onClick={() => dispatch(logOutAdmin())} />
             </li>

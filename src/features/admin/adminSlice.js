@@ -4,6 +4,7 @@ import {
   remindPassThunk,
   createCategoryThunk,
   getCategoriesThunk,
+  createSubCategoryThunk,
 } from "./admin-thunk";
 import toast from "react-hot-toast";
 import {
@@ -12,15 +13,16 @@ import {
   getAdminFromLocalStorage,
   addAdminTokenToLocalStorage,
   removeAdminTokenFromLocalStorage,
-  getAdminTokenFromLocalStorage,
+  // getAdminTokenFromLocalStorage,
 } from "../../utils/localStorage";
 
 const initialState = {
   isLoading: false,
   admin: getAdminFromLocalStorage(),
-  token: getAdminTokenFromLocalStorage(),
+  // token: getAdminTokenFromLocalStorage(),
   isSidebarOpen: false,
   categories: [],
+  subCategories: [],
   currentCategory: [{ id: "", name: "" }],
 };
 
@@ -31,17 +33,16 @@ export const loginAdmin = createAsyncThunk(
   }
 );
 
-export const remindPass = createAsyncThunk(
-  "admin/remindPass",
-  async (info, thunkAPI) => {
-    return remindPassThunk(`/auth_admin/remind_pass/`, info, thunkAPI);
-  }
-);
-
 export const createCategory = createAsyncThunk(
   "admin/createCategory",
   async (info, thunkAPI) => {
     return createCategoryThunk(`/admin/create_category/`, info, thunkAPI);
+  }
+);
+export const createSubCategory = createAsyncThunk(
+  "admin/createSubCategory",
+  async (info, thunkAPI) => {
+    return createSubCategoryThunk(`/admin/create_subcategory/`, info, thunkAPI);
   }
 );
 
@@ -93,19 +94,6 @@ const adminSlice = createSlice({
       toast.error(payload);
     });
 
-    // remindPass
-    builder.addCase(remindPass.pending, (state) => {
-      state.isLoading = true;
-    });
-    builder.addCase(remindPass.fulfilled, (state, { payload }) => {
-      state.isLoading = false;
-      toast.success(`Botvarium отправит тебе новый пароль`);
-    });
-    builder.addCase(remindPass.rejected, (state, { payload }) => {
-      state.isLoading = false;
-      toast.error(payload);
-    });
-
     // createCategory
     builder.addCase(createCategory.pending, (state) => {
       state.isLoading = true;
@@ -120,13 +108,28 @@ const adminSlice = createSlice({
       toast.error(payload);
     });
 
+    // createSubCategory
+    builder.addCase(createSubCategory.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(createSubCategory.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.subCategories.push(payload);
+      toast.success(`Подкатегория создана `);
+    });
+    builder.addCase(createSubCategory.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    });
+
     // getCategories
     builder.addCase(getCategories.pending, (state) => {
       state.isLoading = true;
     });
     builder.addCase(getCategories.fulfilled, (state, { payload }) => {
       state.isLoading = false;
-      state.categories = payload;
+      state.categories = payload.categories;
+      state.subCategories = payload.subCategories;
     });
     builder.addCase(getCategories.rejected, (state, { payload }) => {
       state.isLoading = false;
