@@ -42,6 +42,7 @@ const Wrapper = styled.div`
     right: 20px;
     border-radius: 20px;
     bottom: initial;
+    opacity: 0.9;
   }
   @media (min-width: 1200px) {
   }
