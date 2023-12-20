@@ -37,6 +37,7 @@ const Wrapper = styled.div`
     border-radius: 8px;
     font-size: 1.2rem;
     font-weight: 600;
+    font-family: "Montserrat Alternates", sans-serif;
 
     &:hover {
       cursor: pointer;
