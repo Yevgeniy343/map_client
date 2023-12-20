@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   font-weight: 600;
   font-family: "Montserrat Alternates", sans-serif;
   color: var(--blue-0);
-
+  opacity: 0.8;
   .header {
     display: flex;
     margin: 20px;
