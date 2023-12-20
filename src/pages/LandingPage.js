@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import MapComponent from "./user-components/MapComponent";
 
 const LandingPage = () => {
   return (
     <Wrapper>
-      <p>Landing</p>
+      <MapComponent />
     </Wrapper>
   );
 };
