@@ -5,6 +5,7 @@ import AdminLogin from "./pages/admin-pages/AdminLogin";
 import AdminPage from "./pages/admin-pages/AdminPage";
 import { Toaster } from "react-hot-toast";
 import AdminCatalogPage from "./pages/admin-pages/AdminCatalogPage";
+import ObjectPage from "./pages/admin-pages/ObjectPage";
 
 function App() {
   return (
@@ -43,6 +44,17 @@ function App() {
             }
           >
             <Route path="/a-panel/catalog" element={<AdminCatalogPage />} />
+          </Route>
+
+          <Route
+            path="/a-panel/objects"
+            element={
+              <ProtectedAdmin>
+                <ObjectPage />
+              </ProtectedAdmin>
+            }
+          >
+            <Route path="/a-panel/objects" element={<ObjectPage />} />
           </Route>
 
           <Route path="/" element={<LandingPage />} />

@@ -35,7 +35,7 @@ const AdminCatalogPage = () => {
   );
 };
 const Wrapper = styled.div`
-  padding: 1rem;
+  padding: 10px;
   .categories {
     height: 80vh;
     overflow-y: auto;

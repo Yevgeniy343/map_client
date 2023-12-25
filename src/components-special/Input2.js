@@ -1,7 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const Input2 = ({ type, placeholder, value, name, onChange, autoComplete }) => {
+const Input2 = ({
+  type,
+  placeholder,
+  value,
+  name,
+  onChange,
+  autoComplete,
+  min,
+  max,
+}) => {
   return (
     <Wrapper>
       <input
@@ -11,6 +20,8 @@ const Input2 = ({ type, placeholder, value, name, onChange, autoComplete }) => {
         name={name}
         onChange={onChange}
         autoComplete={autoComplete}
+        min={min}
+        max={max}
       />
     </Wrapper>
   );

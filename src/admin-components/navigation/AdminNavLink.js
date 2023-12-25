@@ -16,11 +16,18 @@ const AdminNavlinks = () => {
     navigate("/a-panel/catalog");
   };
 
+  const objectPageHandler = () => {
+    navigate("/a-panel/objects");
+  };
+
   return (
     <Wrapper>
       <div className="nav-links">
         <button className="nav-link" onClick={catalogPageHandler}>
           Категории
+        </button>
+        <button className="nav-link" onClick={objectPageHandler}>
+          Объекты
         </button>
         <Button text="logout" onClick={() => dispatch(logOutAdmin())} />
       </div>

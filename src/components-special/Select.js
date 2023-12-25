@@ -9,9 +9,9 @@ const animations = {
   exit: { opacity: 0, y: -50 },
 };
 
-const Select = ({ city }) => {
-  const [state, setState] = useState("Томск");
-  console.log(state);
+const Select = ({ objects, passState }) => {
+  const [state, setState] = useState(objects[1].name);
+  passState(state);
   const [arrow, setArrow] = useState(false);
 
   const arrowHandler = () => {
@@ -41,37 +41,11 @@ const Select = ({ city }) => {
           transition={{ duration: 0.5 }}
         >
           <div className="menu2">
-            <p className="item" onClick={itemHandler}>
-              Томск
-            </p>
-            <p className="item" onClick={itemHandler}>
-              Омск
-            </p>
-            <p className="item" onClick={itemHandler}>
-              Москва
-            </p>
-            <p className="item" onClick={itemHandler}>
-              Краснодар
-            </p>
-            <p className="item" onClick={itemHandler}>
-              Казань
-            </p>
-            <p className="item" onClick={itemHandler}>
-              Астрахань
-            </p>
-            <p className="item" onClick={itemHandler}>
-              {" "}
-              Челябинск
-            </p>
-            <p className="item" onClick={itemHandler}>
-              Уфа
-            </p>
-            <p className="item" onClick={itemHandler}>
-              Тверь
-            </p>
-            <p className="item" onClick={itemHandler}>
-              Липецк
-            </p>
+            {objects.map((o) => (
+              <p className="item" onClick={itemHandler}>
+                {o.name}
+              </p>
+            ))}
           </div>
         </motion.div>
       )}
@@ -84,13 +58,13 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 0 1.5rem;
-    border: 2px solid var(--purple-1);
-    width: 240px;
+    border: 2px solid var(--blue-0);
+    width: 300px;
     height: 44px;
     border-radius: 5px;
     transition: 1s;
     :hover {
-      background-color: var(--purple-2);
+      background-color: var(--blue-3);
     }
   }
   .select_active {
@@ -121,10 +95,10 @@ const Wrapper = styled.div`
     justify-content: center;
     position: absolute;
     border-radius: 5px;
-    border-left: 2px solid var(--purple-1);
-    border-right: 2px solid var(--purple-1);
-    border-bottom: 2px solid var(--purple-1);
-    width: 240px;
+    border-left: 2px solid var(--blue-0);
+    border-right: 2px solid var(--blue-0);
+    border-bottom: 2px solid var(--blue-0);
+    width: 300px;
     max-height: 200px;
     background-color: white;
     p {
@@ -138,12 +112,12 @@ const Wrapper = styled.div`
       transition: 1s;
       /* margin-left: 0.3rem; */
       :hover {
-        background-color: var(--purple-2);
+        background-color: var(--blue-3);
       }
     }
   }
   .menu2 {
-    width: 225px;
+    width: 290px;
     overflow: auto;
     ::-webkit-scrollbar {
       width: 5px;

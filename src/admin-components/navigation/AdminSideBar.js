@@ -16,7 +16,13 @@ const AdminSideBar = () => {
     // dispatch(sidebarCloseHandler());
   };
 
-  const openBookHandler = () => {
+  const catalogPageHandler = () => {
+    navigate("/a-panel/catalog");
+    dispatch(sidebarCloseHandler());
+  };
+
+  const objectPageHandler = () => {
+    navigate("/a-panel/objects");
     dispatch(sidebarCloseHandler());
   };
 
@@ -36,8 +42,11 @@ const AdminSideBar = () => {
             </button>
           </div>
           <ul>
-            <li>
+            <li onClick={catalogPageHandler}>
               <p>Категории</p>
+            </li>
+            <li onClick={objectPageHandler}>
+              <p>Объекты</p>
             </li>
 
             <li>
