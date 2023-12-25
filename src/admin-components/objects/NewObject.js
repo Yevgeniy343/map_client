@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import Input2 from "../../components-special/Input2";
 import Select from "../../components-special/Select";
+import Button from "../../components-special/Button";
+import { createObject } from "../../features/admin/adminSlice";
 
 const initialState = {
   name: "",
@@ -11,17 +13,10 @@ const initialState = {
   long: "",
   address: "",
   contacts: "",
-  conditions: { r1: "", r2: "", r3: "", r4: "" },
-  peculiarities: [
-    { name: "name", value: "" },
-    { name: "name", value: "" },
-    { name: "name", value: "" },
-    { name: "name", value: "" },
-    { name: "name", value: "" },
-    { name: "name", value: "" },
-    { name: "name", value: "" },
-    { name: "name", value: "" },
-  ],
+  r1: "",
+  r2: "",
+  r3: "",
+  r4: "",
 };
 
 const NewObject = () => {
@@ -39,6 +34,24 @@ const NewObject = () => {
 
   const objectHandler = (object) => {
     setCurrentObject(object);
+  };
+
+  const createObjectHandler = () => {
+    const { name, lat, long, address, contacts, r1, r2, r3, r4 } = values;
+    dispatch(
+      createObject({
+        subcategory: currentObject,
+        name,
+        lat,
+        long,
+        address,
+        contacts,
+        r1,
+        r2,
+        r3,
+        r4,
+      })
+    );
   };
 
   return (
@@ -145,6 +158,9 @@ const NewObject = () => {
           max="5"
         />
       </div>
+      <div className="actions">
+        <Button text="Создать" onClick={createObjectHandler} />
+      </div>
     </Wrapper>
   );
 };
@@ -154,6 +170,11 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
+  }
+  .actions {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
   @media (min-width: 576px) {
   }

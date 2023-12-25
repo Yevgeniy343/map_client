@@ -1,10 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   loginAdminThunk,
-  remindPassThunk,
   createCategoryThunk,
   getCategoriesThunk,
   createSubCategoryThunk,
+  createObjectThunk,
+  getObjectsThunk,
+  addInfo_1_Thunk,
+  addInfo_2_Thunk,
+  uploadImageThunk,
 } from "./admin-thunk";
 import toast from "react-hot-toast";
 import {
@@ -24,6 +28,7 @@ const initialState = {
   categories: [],
   subCategories: [],
   currentCategory: [{ id: "", name: "" }],
+  objects: [],
 };
 
 export const loginAdmin = createAsyncThunk(
@@ -50,6 +55,42 @@ export const getCategories = createAsyncThunk(
   "admin/get_categories",
   async (info, thunkAPI) => {
     return getCategoriesThunk(`/admin/get_categories/`, info, thunkAPI);
+  }
+);
+
+export const createObject = createAsyncThunk(
+  "admin/createObject",
+  async (info, thunkAPI) => {
+    return createObjectThunk(`/admin/create_object/`, info, thunkAPI);
+  }
+);
+
+export const getObjects = createAsyncThunk(
+  "admin/getObject",
+  async (info, thunkAPI) => {
+    return getObjectsThunk(`/admin/get_objects/`, info, thunkAPI);
+  }
+);
+
+export const addInfo1 = createAsyncThunk(
+  "admin/addInfo1",
+  async (info, thunkAPI) => {
+    return addInfo_1_Thunk(`/admin/addInfo1/`, info, thunkAPI);
+  }
+);
+
+export const addInfo2 = createAsyncThunk(
+  "admin/addInfo2",
+  async (info, thunkAPI) => {
+    return addInfo_2_Thunk(`/admin/addInfo2/`, info, thunkAPI);
+  }
+);
+
+export const uploadImage = createAsyncThunk(
+  "admin/uploadimage",
+  async (info, thunkAPI) => {
+    console.log(info);
+    return uploadImageThunk(`/admin/uploadImage/`, info, thunkAPI);
   }
 );
 
@@ -132,6 +173,71 @@ const adminSlice = createSlice({
       state.subCategories = payload.subCategories;
     });
     builder.addCase(getCategories.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    });
+
+    // createObject
+    builder.addCase(createObject.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(createObject.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.objects.push(payload);
+    });
+    builder.addCase(createObject.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    });
+
+    // getObjects
+    builder.addCase(getObjects.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getObjects.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.objects = payload;
+    });
+    builder.addCase(getObjects.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    });
+
+    // addInfo1
+    builder.addCase(addInfo1.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(addInfo1.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.objects = payload;
+    });
+    builder.addCase(addInfo1.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    });
+
+    // addInfo2
+    builder.addCase(addInfo2.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(addInfo2.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.objects = payload;
+    });
+    builder.addCase(addInfo2.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    });
+
+    // uploadImage
+    builder.addCase(uploadImage.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(uploadImage.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.objects = payload;
+    });
+    builder.addCase(uploadImage.rejected, (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     });

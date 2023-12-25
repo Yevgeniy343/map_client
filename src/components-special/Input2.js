@@ -28,6 +28,7 @@ const Input2 = ({
 };
 const Wrapper = styled.div`
   width: 100%;
+  font-family: "Montserrat Alternates", sans-serif;
 
   input {
     box-sizing: border-box;

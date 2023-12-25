@@ -42,7 +42,7 @@ const Select = ({ objects, passState }) => {
         >
           <div className="menu2">
             {objects.map((o) => (
-              <p className="item" onClick={itemHandler}>
+              <p className="item" key={o._key} onClick={itemHandler}>
                 {o.name}
               </p>
             ))}
