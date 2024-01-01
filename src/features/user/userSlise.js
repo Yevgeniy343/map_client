@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { registerUserThunk, loginUserThunk } from "./thunk";
+import { registerUserThunk, loginUserThunk, getAllThunk } from "./thunk";
 import toast from "react-hot-toast";
 import {
   addTokenToLocalStorage,
@@ -17,6 +17,9 @@ const initialState = {
   isSidebarOpen: false,
   submenuLocation: [],
   pageId: "",
+  categories: [],
+  subCategories: [],
+  objects: [],
 };
 
 export const registerUser = createAsyncThunk(
@@ -30,6 +33,13 @@ export const loginUser = createAsyncThunk(
   "user/loginUser",
   async (user, thunkAPI) => {
     return loginUserThunk(`/auth/login/`, user, thunkAPI);
+  }
+);
+
+export const getAll = createAsyncThunk(
+  "user/getAll",
+  async (user, thunkAPI) => {
+    return getAllThunk(`/auth/getAll/`, user, thunkAPI);
   }
 );
 
@@ -89,7 +99,23 @@ const userSlice = createSlice({
     });
     builder.addCase(loginUser.rejected, (state, { payload }) => {
       state.isLoading = false;
-      toast.error(payload, { theme: "colored" });
+      toast.error(payload);
+    });
+
+    // getAll
+    builder.addCase(getAll.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(getAll.fulfilled, (state, { payload }) => {
+      const { categories, subCategories, objects } = payload;
+      state.categories = categories;
+      state.subCategories = subCategories;
+      state.objects = objects;
+      state.isLoading = false;
+    });
+    builder.addCase(getAll.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
     });
   },
 });

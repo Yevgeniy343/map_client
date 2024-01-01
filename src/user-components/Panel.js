@@ -1,12 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import UserCategory from "./UserCategory";
+import { useSelector, useDispatch } from "react-redux";
 
 const Panel = () => {
+  const dispatch = useDispatch();
+  const { categories } = useSelector((store) => store.user);
   return (
     <Wrapper>
       <div className="header">
         <p>Мой район</p>
       </div>
+      {categories.map((category) => (
+        <UserCategory key={category._id} {...category} />
+      ))}
     </Wrapper>
   );
 };
@@ -20,7 +27,9 @@ const Wrapper = styled.div`
   font-weight: 600;
   font-family: "Montserrat Alternates", sans-serif;
   color: var(--blue-0);
-  opacity: 0.8;
+  opacity: 0.7;
+  padding: 10px;
+  overflow-y: auto;
   .header {
     display: flex;
     margin: 20px;
@@ -42,7 +51,7 @@ const Wrapper = styled.div`
     right: 20px;
     border-radius: 20px;
     bottom: initial;
-    opacity: 0.9;
+    opacity: 0.8;
   }
   @media (min-width: 1200px) {
   }

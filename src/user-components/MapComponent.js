@@ -8,7 +8,7 @@ import {
   Placemark,
   Polygon,
 } from "@pbe/react-yandex-maps";
-import polygonCoordinates from "../../data";
+import polygonCoordinates from "../data";
 
 const MapComponent = () => {
   const dispatch = useDispatch();

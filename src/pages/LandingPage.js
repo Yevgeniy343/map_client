@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import MapComponent from "./user-components/MapComponent";
-import Panel from "./user-components/Panel";
+import MapComponent from "../user-components/MapComponent";
+import Panel from "../user-components/Panel";
 import Button from "../components-special/Button";
+import { getAll } from "../features/user/userSlise";
+import { useSelector, useDispatch } from "react-redux";
 
 const LandingPage = () => {
   const [isPanel, setIsPanel] = useState(true);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAll());
+  }, []);
+
   return (
     <Wrapper>
       <MapComponent />
