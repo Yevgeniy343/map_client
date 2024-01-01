@@ -41,8 +41,8 @@ const Select = ({ objects, passState }) => {
           transition={{ duration: 0.5 }}
         >
           <div className="menu2">
-            {objects.map((o) => (
-              <p className="item" key={o._key} onClick={itemHandler}>
+            {objects.map((o, index) => (
+              <p className="item" key={index} onClick={itemHandler}>
                 {o.name}
               </p>
             ))}
