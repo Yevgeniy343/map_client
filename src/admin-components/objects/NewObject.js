@@ -25,8 +25,8 @@ const NewObject = () => {
   const dispatch = useDispatch();
 
   const [values, setValues] = useState(initialState);
-  const [currentObject, setCurrentObject] = useState(subCategories[1].name);
-  console.log(currentObject);
+  const [currentObject, setCurrentObject] = useState(subCategories[1]?.name);
+  // console.log(currentObject);
 
   const changeHandler = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });

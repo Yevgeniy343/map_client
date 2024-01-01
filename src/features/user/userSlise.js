@@ -20,6 +20,8 @@ const initialState = {
   categories: [],
   subCategories: [],
   objects: [],
+  currentSubCategory: [{ _id: "", name: "", imageName: "" }],
+  currentObject: "",
 };
 
 export const registerUser = createAsyncThunk(
@@ -59,9 +61,14 @@ const userSlice = createSlice({
     sidebarOpenHandler: (state) => {
       state.isSidebarOpen = true;
     },
-
     pageIdHandler: (state, { payload }) => {
       state.pageId = payload;
+    },
+    currentSubCategoryHandler: (state, { payload }) => {
+      state.currentSubCategory = payload;
+    },
+    currentObjectHandler: (state, { payload }) => {
+      state.currentObject = payload;
     },
   },
   extraReducers: (builder) => {
@@ -124,7 +131,8 @@ export const {
   logOutUser,
   sidebarCloseHandler,
   sidebarOpenHandler,
-
   pageIdHandler,
+  currentSubCategoryHandler,
+  currentObjectHandler,
 } = userSlice.actions;
 export default userSlice.reducer;

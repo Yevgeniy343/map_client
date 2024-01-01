@@ -5,8 +5,10 @@ import Panel from "../user-components/Panel";
 import Button from "../components-special/Button";
 import { getAll } from "../features/user/userSlise";
 import { useSelector, useDispatch } from "react-redux";
+import SecondPanel from "../user-components/SecondPanel";
 
 const LandingPage = () => {
+  const { currentObject } = useSelector((store) => store.user);
   const [isPanel, setIsPanel] = useState(true);
   const dispatch = useDispatch();
 
@@ -24,6 +26,7 @@ const LandingPage = () => {
           onClick={() => setIsPanel(!isPanel)}
         />
       </div>
+      {currentObject && <SecondPanel />}
     </Wrapper>
   );
 };

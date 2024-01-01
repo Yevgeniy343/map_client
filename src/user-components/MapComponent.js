@@ -9,9 +9,16 @@ import {
   Polygon,
 } from "@pbe/react-yandex-maps";
 import polygonCoordinates from "../data";
+import _ from "lodash";
+import { currentObjectHandler } from "../features/user/userSlise";
 
 const MapComponent = () => {
+  const { currentSubCategory, objects } = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const thisObjects = _.filter(objects, {
+    subcategory: currentSubCategory.name,
+  });
+
   return (
     <Wrapper>
       <YMaps>
@@ -24,20 +31,21 @@ const MapComponent = () => {
           width="100vw"
           height="100vh"
         >
-          {/* {allApartments?.map((a) => ( */}
-          <Placemark
-            // key={a._id}
-            // geometry={[a.location.lat, a.location.long]}
-            geometry={[55.38, 38.11]}
-            options={{
-              iconLayout: "default#image",
-              // iconImageHref: point,
-              iconImageSize: [40, 30],
-              // iconImageOffset: [-3, -42],
-            }}
-            // onClick={() => listViewHandler(a._id)}
-          />
-          {/* ))} */}
+          {thisObjects?.map((o) => (
+            <Placemark
+              key={o._id}
+              geometry={[o.location.lat, o.location.long]}
+              // geometry={[55.57, 38.08]}
+              options={{
+                iconLayout: "default#image",
+                iconImageHref: require(`../images/${currentSubCategory.imageName}.svg`),
+
+                iconImageSize: [40, 30],
+                // iconImageOffset: [-3, -42],
+              }}
+              onClick={() => dispatch(currentObjectHandler(o._id))}
+            />
+          ))}
           <Polygon
             geometry={[polygonCoordinates]}
             options={{

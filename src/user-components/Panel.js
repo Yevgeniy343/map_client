@@ -48,10 +48,9 @@ const Wrapper = styled.div`
     height: 80vh;
     width: 400px;
     background: white;
-    right: 20px;
     border-radius: 20px;
     bottom: initial;
-    opacity: 0.8;
+    opacity: 0.9;
   }
   @media (min-width: 1200px) {
   }

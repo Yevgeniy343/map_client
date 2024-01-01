@@ -1,10 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { currentSubCategoryHandler } from "../features/user/userSlise";
 
-const UserSubCategory = ({ name, _id }) => {
+const UserSubCategory = ({ name, _id, imageName }) => {
+  const dispatch = useDispatch();
+
   return (
     <Wrapper>
-      <p>{name}</p>
+      <p
+        onClick={() =>
+          dispatch(currentSubCategoryHandler({ _id, name, imageName }))
+        }
+      >
+        {name}
+      </p>
     </Wrapper>
   );
 };

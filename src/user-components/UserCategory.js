@@ -11,7 +11,6 @@ const UserCategory = ({ _id, name }) => {
   const [isActive, setIsActive] = useState(false);
 
   const thisSubCategories = _.filter(subCategories, { categoryId: _id });
-  console.log(thisSubCategories);
 
   return (
     <Wrapper>

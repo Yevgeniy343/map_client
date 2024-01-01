@@ -10,7 +10,7 @@ const animations = {
 };
 
 const Select = ({ objects, passState }) => {
-  const [state, setState] = useState(objects[1].name);
+  const [state, setState] = useState(objects[1]?.name);
   passState(state);
   const [arrow, setArrow] = useState(false);
 
