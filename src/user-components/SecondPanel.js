@@ -6,6 +6,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import { currentObjectHandler } from "../features/user/userSlise";
 import _ from "lodash";
 import Button from "../components-special/Button";
+import { FaStar } from "react-icons/fa";
 
 const { REACT_APP_URL_API } = process.env;
 
@@ -43,11 +44,21 @@ const SecondPanel = () => {
     );
   };
 
+  const renderStars = (rating) => {
+    const stars = new Array(5).fill(null);
+
+    return stars.map((_, index) => {
+      return (
+        <FaStar key={index} className={index < rating ? "gold" : "gray"} />
+      );
+    });
+  };
+
   return (
     <Draggable
       onStart={handleStartDrag}
       onStop={handleStopDrag}
-      handle=".close"
+      // handle=".close"
     >
       <Wrapper isDragging={isDragging}>
         <div className="close">
@@ -71,6 +82,27 @@ const SecondPanel = () => {
             </div>
             <div className="right">
               <Button text=">" onClick={handleRightClick} />
+            </div>
+          </div>
+          <div className="name">{thisObject.name}</div>
+          <div className="address">{thisObject.address}</div>
+          <div className="reviews">
+            <p>Состояние площадки</p>
+            <div className="r">
+              <p>Безопасность</p>
+              {renderStars(thisObject?.reviews.r1)}
+            </div>
+            <div className="r">
+              <p>Современность</p>
+              {renderStars(thisObject?.reviews.r2)}
+            </div>
+            <div className="r">
+              <p>Состояние</p>
+              {renderStars(thisObject?.reviews.r3)}
+            </div>
+            <div className="r">
+              <p>Чистота</p>
+              {renderStars(thisObject?.reviews.r4)}
             </div>
           </div>
         </div>
@@ -132,6 +164,42 @@ const Wrapper = styled.div`
     bottom: 5px;
     right: 5px;
   }
+  .name {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    font-size: 25px;
+  }
+  .address {
+    text-align: center;
+    font-weight: 400;
+    color: gray;
+    opacity: 0.8;
+  }
+  .reviews {
+    margin: 10px;
+    font-size: 15px;
+
+    .gold {
+      color: orange;
+      font-size: 15px;
+      margin: 0 3px;
+    }
+    .gray {
+      color: gray;
+      font-size: 15px;
+      margin: 0 3px;
+    }
+    .r {
+      margin: 10px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      p {
+        margin-right: 5px;
+      }
+    }
+  }
   @media (min-width: 576px) {
   }
   @media (min-width: 768px) {
@@ -139,7 +207,7 @@ const Wrapper = styled.div`
   @media (min-width: 992px) {
     position: absolute;
     right: 430px;
-    height: 60vh;
+    height: 70vh;
     width: 300px;
     background: white;
     background: ${(props) => (props.isDragging ? "lightgreen" : "white")};
