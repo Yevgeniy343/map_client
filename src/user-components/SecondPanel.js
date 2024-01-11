@@ -7,6 +7,8 @@ import { currentObjectHandler } from "../features/user/userSlise";
 import _ from "lodash";
 import Button from "../components-special/Button";
 import { FaStar } from "react-icons/fa";
+import { FcOk } from "react-icons/fc";
+import { FcCancel } from "react-icons/fc";
 
 const { REACT_APP_URL_API } = process.env;
 
@@ -105,6 +107,21 @@ const SecondPanel = () => {
               {renderStars(thisObject?.reviews.r4)}
             </div>
           </div>
+          <div className="info">
+            <p>Особенности</p>
+            {thisObject?.info1.map((info) => (
+              <div className="inf">
+                <FcOk />
+                <p>{info}</p>
+              </div>
+            ))}
+            {thisObject?.info2.map((info) => (
+              <div className="inf">
+                <FcCancel />
+                <p>{info}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </Wrapper>
     </Draggable>
@@ -178,7 +195,7 @@ const Wrapper = styled.div`
   }
   .reviews {
     margin: 10px;
-    font-size: 15px;
+    font-size: 17px;
 
     .gold {
       color: orange;
@@ -187,7 +204,7 @@ const Wrapper = styled.div`
     }
     .gray {
       color: gray;
-      font-size: 15px;
+      font-size: 17px;
       margin: 0 3px;
     }
     .r {
@@ -200,6 +217,22 @@ const Wrapper = styled.div`
       }
     }
   }
+  .info {
+    margin: 10px;
+    font-size: 15px;
+    margin-top: 20px;
+
+    .inf {
+      margin: 10px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      svg {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+    }
+  }
   @media (min-width: 576px) {
   }
   @media (min-width: 768px) {
@@ -207,7 +240,7 @@ const Wrapper = styled.div`
   @media (min-width: 992px) {
     position: absolute;
     right: 430px;
-    height: 70vh;
+    height: 80vh;
     width: 300px;
     background: white;
     background: ${(props) => (props.isDragging ? "lightgreen" : "white")};
