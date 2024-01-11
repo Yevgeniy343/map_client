@@ -16,7 +16,7 @@ const MapComponent = () => {
   const { currentSubCategory, objects } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const thisObjects = _.filter(objects, {
-    subcategory: currentSubCategory.name,
+    subcategory: currentSubCategory?.name,
   });
 
   return (

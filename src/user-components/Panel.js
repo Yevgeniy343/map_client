@@ -11,7 +11,7 @@ const Panel = () => {
       <div className="header">
         <p>Мой район</p>
       </div>
-      {categories.map((category) => (
+      {categories?.map((category) => (
         <UserCategory key={category._id} {...category} />
       ))}
     </Wrapper>
