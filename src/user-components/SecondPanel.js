@@ -3,28 +3,38 @@ import styled from "styled-components";
 import Draggable from "react-draggable";
 import { useSelector, useDispatch } from "react-redux";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { currentObjectHandler } from "../features/user/userSlise";
+import { currentObjectHandler, sendMessage } from "../features/user/userSlise";
 import _ from "lodash";
 import Button from "../components-special/Button";
 import { FaStar } from "react-icons/fa";
 import { FcOk } from "react-icons/fc";
 import { FcCancel } from "react-icons/fc";
+import Input2 from "../components-special/Input2";
+import toast from "react-hot-toast";
 
 const { REACT_APP_URL_API } = process.env;
 
+const initialState = {
+  name: "",
+  message: "",
+};
+
 const SecondPanel = () => {
-  const { currentSubCategory, objects, currentObject } = useSelector(
+  const { currentSubCategory, objects, currentObject, messages } = useSelector(
     (store) => store.user
   );
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
+  const [values, setValues] = useState(initialState);
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log(currentIndex);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const changeHandler = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
   const thisObject = _.find(objects, (object) => object._id === currentObject);
-  console.log(thisObject);
-
-  const [isDragging, setIsDragging] = useState(false);
+  const thisMessages = _.filter(messages, { objectId: thisObject._id });
 
   const handleStartDrag = () => {
     setIsDragging(true);
@@ -54,6 +64,19 @@ const SecondPanel = () => {
         <FaStar key={index} className={index < rating ? "gold" : "gray"} />
       );
     });
+  };
+
+  const sendMessageHandler = () => {
+    const { name, message } = values;
+
+    if (!name || !message) {
+      toast.error("Введите все значения");
+      return;
+    }
+    dispatch(
+      sendMessage({ name: name, message: message, objectId: thisObject._id })
+    );
+    setValues(initialState);
   };
 
   return (
@@ -122,6 +145,35 @@ const SecondPanel = () => {
               </div>
             ))}
           </div>
+          <div className="messages">
+            {thisMessages.map((m) => (
+              <div className="message">
+                <p>{m.name}:</p>
+                <p>{m.message}</p>
+              </div>
+            ))}
+          </div>
+          <div className="in">
+            <Input2
+              type="text"
+              name="name"
+              placeholder="Ваше имя"
+              value={values.name}
+              onChange={changeHandler}
+            />
+          </div>
+          <div className="in">
+            <Input2
+              type="text"
+              name="message"
+              placeholder="Отзыв"
+              value={values.message}
+              onChange={changeHandler}
+            />
+          </div>
+          <div className="action2">
+            <Button text="Отправить" onClick={sendMessageHandler} />
+          </div>
         </div>
       </Wrapper>
     </Draggable>
@@ -142,6 +194,17 @@ const Wrapper = styled.div`
   padding: 10px;
   overflow-y: auto;
   z-index: 10;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px var(--blue-0);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--blue-1);
+    border-radius: 10px;
+  }
   cursor: grab;
   .close {
     width: 100%;
@@ -230,6 +293,26 @@ const Wrapper = styled.div`
       svg {
         margin-right: 10px;
         font-size: 20px;
+      }
+    }
+  }
+  .in {
+    margin: 10px 0;
+  }
+  .action2 {
+    display: flex;
+    justify-content: center;
+  }
+  .messages {
+    .message {
+      display: flex;
+      p:first-child {
+        font-weight: 600;
+      }
+      p {
+        margin: 2px 5px;
+        font-weight: 400;
+        font-size: 15px;
       }
     }
   }

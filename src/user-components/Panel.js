@@ -30,6 +30,17 @@ const Wrapper = styled.div`
   opacity: 0.7;
   padding: 10px;
   overflow-y: auto;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px var(--blue-0);
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--blue-1);
+    border-radius: 10px;
+  }
   .header {
     display: flex;
     margin: 20px;
