@@ -109,8 +109,8 @@ const SecondPanel = () => {
               <Button text=">" onClick={handleRightClick} />
             </div>
           </div>
-          <div className="name">{thisObject.name}</div>
-          <div className="address">{thisObject.address}</div>
+          <div className="name">{thisObject?.name}</div>
+          <div className="address">{thisObject?.address}</div>
           <div className="reviews">
             <p>Состояние площадки</p>
             <div className="r">
