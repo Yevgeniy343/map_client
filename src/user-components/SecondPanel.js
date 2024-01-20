@@ -34,7 +34,7 @@ const SecondPanel = () => {
   };
 
   const thisObject = _.find(objects, (object) => object._id === currentObject);
-  const thisMessages = _.filter(messages, { objectId: thisObject._id });
+  const thisMessages = _.filter(messages, { objectId: thisObject?._id });
 
   const handleStartDrag = () => {
     setIsDragging(true);
