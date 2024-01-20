@@ -46,13 +46,13 @@ const SecondPanel = () => {
 
   const handleLeftClick = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : thisObject.image.length - 1
+      prevIndex > 0 ? prevIndex - 1 : thisObject?.image.length - 1
     );
   };
 
   const handleRightClick = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex < thisObject.image.length - 1 ? prevIndex + 1 : 0
+      prevIndex < thisObject?.image.length - 1 ? prevIndex + 1 : 0
     );
   };
 
