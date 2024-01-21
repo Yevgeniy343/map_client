@@ -35,7 +35,7 @@ const SecondPanel = () => {
 
   const thisObject = _.find(objects, (object) => object._id === currentObject);
   const thisMessages = _.filter(messages, { objectId: thisObject?._id });
-
+  // console.log(thisObject);
   const handleStartDrag = () => {
     setIsDragging(true);
   };
@@ -61,7 +61,10 @@ const SecondPanel = () => {
 
     return stars.map((_, index) => {
       return (
-        <FaStar key={index} className={index < rating ? "gold" : "gray"} />
+        <FaStar
+          key={Math.random()}
+          className={index < rating ? "gold" : "gray"}
+        />
       );
     });
   };
@@ -133,13 +136,13 @@ const SecondPanel = () => {
           <div className="info">
             <p>Особенности</p>
             {thisObject?.info1.map((info) => (
-              <div className="inf">
+              <div className="inf" key={Math.random()}>
                 <FcOk />
                 <p>{info}</p>
               </div>
             ))}
             {thisObject?.info2.map((info) => (
-              <div className="inf">
+              <div className="inf" key={Math.random()}>
                 <FcCancel />
                 <p>{info}</p>
               </div>
@@ -147,7 +150,7 @@ const SecondPanel = () => {
           </div>
           <div className="messages">
             {thisMessages.map((m) => (
-              <div className="message">
+              <div className="message" key={Math.random()}>
                 <p>{m.name}:</p>
                 <p>{m.message}</p>
               </div>
@@ -272,9 +275,12 @@ const Wrapper = styled.div`
     }
     .r {
       margin: 10px;
-      font-size: 15px;
+      font-size: 14px;
       display: flex;
       align-items: center;
+      svg {
+        font-size: 14px;
+      }
       p {
         margin-right: 5px;
       }

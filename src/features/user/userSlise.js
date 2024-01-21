@@ -28,6 +28,7 @@ const initialState = {
   messages: [],
   currentSubCategory: [{ _id: "", name: "", imageName: "" }],
   currentObject: "",
+  isSecondPanel: false,
 };
 
 export const registerUser = createAsyncThunk(
@@ -83,6 +84,9 @@ const userSlice = createSlice({
     },
     currentObjectHandler: (state, { payload }) => {
       state.currentObject = payload;
+    },
+    secontPanelHandler: (state, { payload }) => {
+      state.isSecondPanel = payload;
     },
   },
   extraReducers: (builder) => {
@@ -162,5 +166,6 @@ export const {
   pageIdHandler,
   currentSubCategoryHandler,
   currentObjectHandler,
+  secontPanelHandler,
 } = userSlice.actions;
 export default userSlice.reducer;

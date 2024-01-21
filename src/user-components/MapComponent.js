@@ -10,7 +10,10 @@ import {
 } from "@pbe/react-yandex-maps";
 import polygonCoordinates from "../data";
 import _ from "lodash";
-import { currentObjectHandler } from "../features/user/userSlise";
+import {
+  currentObjectHandler,
+  secontPanelHandler,
+} from "../features/user/userSlise";
 
 const MapComponent = () => {
   const { currentSubCategory, objects } = useSelector((store) => store.user);
@@ -18,6 +21,11 @@ const MapComponent = () => {
   const thisObjects = _.filter(objects, {
     subcategory: currentSubCategory?.name,
   });
+
+  const pointHandler = (point) => {
+    dispatch(currentObjectHandler(point));
+    dispatch(secontPanelHandler(true));
+  };
 
   return (
     <Wrapper>
@@ -43,7 +51,7 @@ const MapComponent = () => {
                 iconImageSize: [40, 30],
                 // iconImageOffset: [-3, -42],
               }}
-              onClick={() => dispatch(currentObjectHandler(o._id))}
+              onClick={() => pointHandler(o._id)}
             />
           ))}
           <Polygon

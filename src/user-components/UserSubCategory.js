@@ -1,17 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { currentSubCategoryHandler } from "../features/user/userSlise";
+import {
+  currentSubCategoryHandler,
+  secontPanelHandler,
+} from "../features/user/userSlise";
 
 const UserSubCategory = ({ name, _id, imageName }) => {
+  const { currentSubCategory } = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  console.log(currentSubCategory);
+  console.log(_id);
 
+  const subcategoryHandler = () => {
+    dispatch(currentSubCategoryHandler({ _id, name, imageName }));
+    dispatch(secontPanelHandler(false));
+  };
   return (
     <Wrapper>
       <p
-        onClick={() =>
-          dispatch(currentSubCategoryHandler({ _id, name, imageName }))
-        }
+        className={_id === currentSubCategory._id ? "current-subcategory" : ""}
+        onClick={subcategoryHandler}
       >
         {name}
       </p>
@@ -24,6 +33,9 @@ const Wrapper = styled.div`
 
   &:hover {
     text-decoration: underline;
+  }
+  .current-subcategory {
+    color: var(--clr-green-dark);
   }
   @media (min-width: 576px) {
   }

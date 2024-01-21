@@ -3,17 +3,36 @@ import styled from "styled-components";
 import MapComponent from "../user-components/MapComponent";
 import Panel from "../user-components/Panel";
 import Button from "../components-special/Button";
-import { getAll } from "../features/user/userSlise";
+import {
+  getAll,
+  currentObjectHandler,
+  secontPanelHandler,
+} from "../features/user/userSlise";
 import { useSelector, useDispatch } from "react-redux";
 import SecondPanel from "../user-components/SecondPanel";
 
 const LandingPage = () => {
-  const { currentObject } = useSelector((store) => store.user);
+  const { currentObject, isSecondPanel } = useSelector((store) => store.user);
   const [isPanel, setIsPanel] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAll());
+  }, []);
+
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      dispatch(currentObjectHandler(""));
+      dispatch(secontPanelHandler(false));
+      e.preventDefault();
+      e.returnValue = "";
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
 
   return (
@@ -26,7 +45,7 @@ const LandingPage = () => {
           onClick={() => setIsPanel(!isPanel)}
         />
       </div>
-      {currentObject && <SecondPanel />}
+      {currentObject && isSecondPanel && <SecondPanel />}
     </Wrapper>
   );
 };
