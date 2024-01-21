@@ -9,7 +9,8 @@ import {
   addInfo2,
   uploadImage,
 } from "../../features/admin/adminSlice";
-
+import { RiDeleteBin7Fill } from "react-icons/ri";
+import { deleteObject } from "../../features/admin/adminSlice";
 const initialState = {
   name1: "",
   name2: "",
@@ -37,7 +38,7 @@ const Object = ({
   const dispatch = useDispatch();
   const [values, setValues] = useState(initialState);
   const [picture, setPicture] = useState();
-  console.log(picture);
+  // console.log(picture);
 
   const changeHandler = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -72,6 +73,10 @@ const Object = ({
 
   const saveImageHandler = () => {
     dispatch(uploadImage(formData));
+  };
+
+  const deleteHandler = () => {
+    dispatch(deleteObject({ objectId: _id }));
   };
 
   return (
@@ -202,6 +207,9 @@ const Object = ({
       {picture && (
         <Button onClick={saveImageHandler} text="Сохранить изображение" />
       )}
+      <div className="delete" onClick={deleteHandler}>
+        <RiDeleteBin7Fill />
+      </div>
     </Wrapper>
   );
 };
@@ -231,6 +239,21 @@ const Wrapper = styled.div`
   .info {
     display: flex;
     justify-content: space-between;
+  }
+  .delete {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    svg {
+      font-size: 30px;
+      transition: 1s;
+      color: var(--clr-red-light);
+      &:hover {
+        color: var(--purple-2);
+        scale: 1.1;
+      }
+    }
   }
   @media (min-width: 576px) {
   }

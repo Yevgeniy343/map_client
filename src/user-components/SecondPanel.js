@@ -34,7 +34,7 @@ const SecondPanel = () => {
   };
 
   const thisObject = _.find(objects, (object) => object._id === currentObject);
-  console.log(thisObject);
+  // console.log(thisObject);
 
   const servicesArray = _.split(thisObject.services, ";");
   const programsArray = _.split(thisObject.programs, ";");
@@ -44,7 +44,7 @@ const SecondPanel = () => {
   const organisationsArray = _.split(thisObject.organisations, ";");
   const whereArray = _.split(thisObject.where, ";");
   const whatArray = _.split(thisObject.what, ";");
-  console.log(servicesArray);
+  // console.log(servicesArray);
 
   const thisMessages = _.filter(messages, { objectId: thisObject?._id });
   const handleStartDrag = () => {

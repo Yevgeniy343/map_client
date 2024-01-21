@@ -9,6 +9,7 @@ import {
   addInfo_1_Thunk,
   addInfo_2_Thunk,
   uploadImageThunk,
+  deleteObjectThunk,
 } from "./admin-thunk";
 import toast from "react-hot-toast";
 import {
@@ -89,8 +90,18 @@ export const addInfo2 = createAsyncThunk(
 export const uploadImage = createAsyncThunk(
   "admin/uploadimage",
   async (info, thunkAPI) => {
-    console.log(info);
     return uploadImageThunk(`/admin/uploadImage/`, info, thunkAPI);
+  }
+);
+
+export const deleteObject = createAsyncThunk(
+  "admin/deleteObject",
+  async (info, thunkAPI) => {
+    return deleteObjectThunk(
+      `/admin/deleteObject/${info.objectId}`,
+      info,
+      thunkAPI
+    );
   }
 );
 
@@ -238,6 +249,19 @@ const adminSlice = createSlice({
       state.objects = payload;
     });
     builder.addCase(uploadImage.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      toast.error(payload);
+    });
+
+    // deleteObject
+    builder.addCase(deleteObject.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(deleteObject.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.objects = payload;
+    });
+    builder.addCase(deleteObject.rejected, (state, { payload }) => {
       state.isLoading = false;
       toast.error(payload);
     });
