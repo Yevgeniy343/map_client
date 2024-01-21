@@ -31,7 +31,7 @@ const Wrapper = styled.div`
   }
   @media (min-width: 992px) {
     width: 60%;
-    height: 80vh;
+    /* height: 95vh; */
     overflow-y: auto;
   }
   @media (min-width: 1200px) {

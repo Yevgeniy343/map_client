@@ -19,6 +19,14 @@ const initialState = {
   r4: "",
   r5: "",
   r6: "",
+  services: "",
+  programs: "",
+  breeds: "",
+  coffee: "",
+  shops: "",
+  organisations: "",
+  where: "",
+  what: "",
 };
 
 const NewObject = () => {
@@ -39,8 +47,27 @@ const NewObject = () => {
   };
 
   const createObjectHandler = () => {
-    const { name, lat, long, address, contacts, r1, r2, r3, r4, r5, r6 } =
-      values;
+    const {
+      name,
+      lat,
+      long,
+      address,
+      contacts,
+      r1,
+      r2,
+      r3,
+      r4,
+      r5,
+      r6,
+      services,
+      programs,
+      breeds,
+      coffee,
+      organisations,
+      shops,
+      where,
+      what,
+    } = values;
     dispatch(
       createObject({
         subcategory: currentObject,
@@ -59,6 +86,14 @@ const NewObject = () => {
         r4,
         r5,
         r6,
+        ...(services && { services }),
+        ...(programs && { programs }),
+        ...(breeds && { breeds }),
+        ...(coffee && { coffee }),
+        ...(organisations && { organisations }),
+        ...(shops && { shops }),
+        ...(where && { where }),
+        ...(what && { what }),
       })
     );
   };
@@ -197,8 +232,8 @@ const NewObject = () => {
           <Input2
             placeholder="услуги"
             type="text"
-            name="name"
-            value={values.name}
+            name="services"
+            value={values.services}
             onChange={changeHandler}
             autoComplete="off"
           />
@@ -207,8 +242,8 @@ const NewObject = () => {
           <Input2
             placeholder="программы"
             type="text"
-            name="name"
-            value={values.name}
+            name="programs"
+            value={values.programs}
             onChange={changeHandler}
             autoComplete="off"
           />
@@ -217,8 +252,8 @@ const NewObject = () => {
           <Input2
             placeholder="породы"
             type="text"
-            name="name"
-            value={values.name}
+            name="breeds"
+            value={values.breeds}
             onChange={changeHandler}
             autoComplete="off"
           />
@@ -227,8 +262,8 @@ const NewObject = () => {
           <Input2
             placeholder="магазины"
             type="text"
-            name="name"
-            value={values.name}
+            name="shops"
+            value={values.shops}
             onChange={changeHandler}
             autoComplete="off"
           />
@@ -237,8 +272,8 @@ const NewObject = () => {
           <Input2
             placeholder="кафе"
             type="text"
-            name="name"
-            value={values.name}
+            name="coffee"
+            value={values.coffee}
             onChange={changeHandler}
             autoComplete="off"
           />
@@ -247,8 +282,8 @@ const NewObject = () => {
           <Input2
             placeholder="организации"
             type="text"
-            name="name"
-            value={values.name}
+            name="organisations"
+            value={values.organisations}
             onChange={changeHandler}
             autoComplete="off"
           />
@@ -257,8 +292,8 @@ const NewObject = () => {
           <Input2
             placeholder="куда пойдут вещи"
             type="text"
-            name="name"
-            value={values.name}
+            name="where"
+            value={values.where}
             onChange={changeHandler}
             autoComplete="off"
           />
@@ -267,8 +302,8 @@ const NewObject = () => {
           <Input2
             placeholder="что можно сдавать"
             type="text"
-            name="name"
-            value={values.name}
+            name="what"
+            value={values.what}
             onChange={changeHandler}
             autoComplete="off"
           />

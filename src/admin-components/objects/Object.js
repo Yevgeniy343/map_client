@@ -25,6 +25,14 @@ const Object = ({
   _id,
   info1,
   info2,
+  services,
+  programs,
+  breeds,
+  coffee,
+  organisations,
+  shops,
+  where,
+  what,
 }) => {
   const dispatch = useDispatch();
   const [values, setValues] = useState(initialState);
@@ -93,6 +101,38 @@ const Object = ({
         <p className="value">Чистота {reviews.r4}</p>
         <p className="value">Озелененность {reviews.r5}</p>
         <p className="value">Расположение {reviews.r6}</p>
+      </div>
+      <div className="line">
+        <p className="key">Услуги</p>
+        <p className="value">{services}</p>
+      </div>
+      <div className="line">
+        <p className="key">Программы</p>
+        <p className="value">{programs}</p>
+      </div>
+      <div className="line">
+        <p className="key">Породы</p>
+        <p className="value">{breeds}</p>
+      </div>
+      <div className="line">
+        <p className="key">Магазины</p>
+        <p className="value">{shops}</p>
+      </div>
+      <div className="line">
+        <p className="key">Кафе</p>
+        <p className="value">{coffee}</p>
+      </div>
+      <div className="line">
+        <p className="key">Организации</p>
+        <p className="value">{organisations}</p>
+      </div>
+      <div className="line">
+        <p className="key">Куда пойдут вещи</p>
+        <p className="value">{where}</p>
+      </div>
+      <div className="line">
+        <p className="key">Что можно сдавать</p>
+        <p className="value">{what}</p>
       </div>
       <div className="line">
         <p className="key">Положительные особенности:</p>

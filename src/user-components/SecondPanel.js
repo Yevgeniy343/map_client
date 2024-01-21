@@ -34,8 +34,19 @@ const SecondPanel = () => {
   };
 
   const thisObject = _.find(objects, (object) => object._id === currentObject);
-  const thisMessages = _.filter(messages, { objectId: thisObject?._id });
   console.log(thisObject);
+
+  const servicesArray = _.split(thisObject.services, ";");
+  const programsArray = _.split(thisObject.programs, ";");
+  const breedsArray = _.split(thisObject.breeds, ";");
+  const shopsArray = _.split(thisObject.shops, ";");
+  const coffeeArray = _.split(thisObject.coffee, ";");
+  const organisationsArray = _.split(thisObject.organisations, ";");
+  const whereArray = _.split(thisObject.where, ";");
+  const whatArray = _.split(thisObject.what, ";");
+  console.log(servicesArray);
+
+  const thisMessages = _.filter(messages, { objectId: thisObject?._id });
   const handleStartDrag = () => {
     setIsDragging(true);
   };
@@ -83,27 +94,18 @@ const SecondPanel = () => {
   };
 
   return (
-    <Draggable
-      onStart={handleStartDrag}
-      onStop={handleStopDrag}
-      // handle=".close"
-    >
+    <Draggable onStart={handleStartDrag} onStop={handleStopDrag}>
       <Wrapper isDragging={isDragging}>
         <div className="close">
           <IoCloseCircleOutline
             onClick={() => dispatch(currentObjectHandler(""))}
           />
         </div>
-        {/* <div className="header">{currentSubCategory.name}</div> */}
         <div className="content">
           <div className="picture">
             <img
-              // src={`${REACT_APP_URL_API}/${thisObject?.image[currentIndex]}`}
               src={`${REACT_APP_URL_API}/${thisObject?.image[currentIndex]}`}
               alt="Object Display"
-              // onError={(e) => {
-              //   e.target.src = "fallback-image-url";
-              // }}
             />
             <div className="left">
               <Button text="<" onClick={handleLeftClick} />
@@ -168,6 +170,86 @@ const SecondPanel = () => {
               </div>
             ))}
           </div>
+          {thisObject.services && (
+            <div className="info">
+              <p>Услуги</p>
+              {servicesArray?.map((item) => (
+                <div className="inf" key={Math.random()}>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {thisObject.breeds && (
+            <div className="info">
+              <p>Породы</p>
+              {breedsArray?.map((item) => (
+                <div className="inf" key={Math.random()}>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {thisObject.programs && (
+            <div className="info">
+              <p>Программы</p>
+              {programsArray?.map((item) => (
+                <div className="inf" key={Math.random()}>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {thisObject.shops && (
+            <div className="info">
+              <p>Магазины</p>
+              {shopsArray?.map((item) => (
+                <div className="inf" key={Math.random()}>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {thisObject.coffee && (
+            <div className="info">
+              <p>Кафе</p>
+              {coffeeArray?.map((item) => (
+                <div className="inf" key={Math.random()}>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {thisObject.organisations && (
+            <div className="info">
+              <p>Организации</p>
+              {organisationsArray?.map((item) => (
+                <div className="inf" key={Math.random()}>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {thisObject.where && (
+            <div className="info">
+              <p>Куда пойдут вещи</p>
+              {whereArray?.map((item) => (
+                <div className="inf" key={Math.random()}>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          )}
+          {thisObject.what && (
+            <div className="info">
+              <p>Что можно сдавать</p>
+              {whatArray?.map((item) => (
+                <div className="inf" key={Math.random()}>
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          )}
           <div className="messages">
             {thisMessages.map((m) => (
               <div className="message" key={Math.random()}>
