@@ -36,7 +36,12 @@ const SecondPanel = () => {
   const thisObject = _.find(objects, (object) => object._id === currentObject);
   // console.log(thisObject);
 
-  const servicesArray = _.split(thisObject.services, ";");
+  let servicesArray;
+  if ("services" in thisObject) {
+    servicesArray = _.split(thisObject.services, ";");
+  } else {
+    servicesArray = [];
+  }
   const programsArray = _.split(thisObject.programs, ";");
   const breedsArray = _.split(thisObject.breeds, ";");
   const shopsArray = _.split(thisObject.shops, ";");
