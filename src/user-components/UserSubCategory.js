@@ -9,12 +9,16 @@ import {
 const UserSubCategory = ({ name, _id, imageName }) => {
   const { currentSubCategory } = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  console.log(currentSubCategory);
-  console.log(_id);
 
   const subcategoryHandler = () => {
     dispatch(currentSubCategoryHandler({ _id, name, imageName }));
     dispatch(secontPanelHandler(false));
+    console.log(_id);
+    console.log(currentSubCategory._id);
+    if (_id === currentSubCategory._id) {
+      // dispatch(currentObjectHandler(""));
+      dispatch(currentSubCategoryHandler({}));
+    }
   };
   return (
     <Wrapper>

@@ -7,6 +7,7 @@ import {
   getAll,
   currentObjectHandler,
   secontPanelHandler,
+  currentSubCategoryHandler,
 } from "../features/user/userSlise";
 import { useSelector, useDispatch } from "react-redux";
 import SecondPanel from "../user-components/SecondPanel";
@@ -44,6 +45,10 @@ const LandingPage = () => {
           text={isPanel ? "Скрыть панель" : "Показать панель"}
           onClick={() => setIsPanel(!isPanel)}
         />
+        <Button
+          text="Скрыть объекты"
+          onClick={() => dispatch(currentSubCategoryHandler({}))}
+        />
       </div>
       {currentObject && isSecondPanel && <SecondPanel />}
     </Wrapper>
@@ -57,8 +62,12 @@ const Wrapper = styled.div`
   position: relative;
   .action {
     position: absolute;
+    display: flex;
     right: 20px;
     top: 20px;
+    div {
+      margin: 0 5px;
+    }
   }
   @media (min-width: 576px) {
   }

@@ -35,8 +35,8 @@ const Wrapper = styled.div`
     border: none;
     background: blue;
     border-radius: 8px;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 500;
     font-family: "Montserrat Alternates", sans-serif;
 
     &:hover {

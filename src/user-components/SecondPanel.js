@@ -94,7 +94,7 @@ const SecondPanel = () => {
             onClick={() => dispatch(currentObjectHandler(""))}
           />
         </div>
-        <div className="header">{currentSubCategory.name}</div>
+        {/* <div className="header">{currentSubCategory.name}</div> */}
         <div className="content">
           <div className="picture">
             <img
