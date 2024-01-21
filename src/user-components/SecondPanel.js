@@ -42,13 +42,55 @@ const SecondPanel = () => {
   } else {
     servicesArray = [];
   }
-  const programsArray = _.split(thisObject.programs, ";");
-  const breedsArray = _.split(thisObject.breeds, ";");
-  const shopsArray = _.split(thisObject.shops, ";");
-  const coffeeArray = _.split(thisObject.coffee, ";");
-  const organisationsArray = _.split(thisObject.organisations, ";");
-  const whereArray = _.split(thisObject.where, ";");
-  const whatArray = _.split(thisObject.what, ";");
+  let programsArray;
+  if ("programs" in thisObject) {
+    programsArray = _.split(thisObject.programs, ";");
+  } else {
+    programsArray = [];
+  }
+
+  let breedsArray;
+  if ("breeds" in thisObject) {
+    breedsArray = _.split(thisObject.breeds, ";");
+  } else {
+    breedsArray = [];
+  }
+
+  let shopsArray;
+  if ("shops" in thisObject) {
+    shopsArray = _.split(thisObject.shops, ";");
+  } else {
+    shopsArray = [];
+  }
+
+  let coffeeArray;
+  if ("coffee" in thisObject) {
+    coffeeArray = _.split(thisObject.coffee, ";");
+  } else {
+    coffeeArray = [];
+  }
+
+  let organisationsArray;
+  if ("organisations" in thisObject) {
+    organisationsArray = _.split(thisObject.organisations, ";");
+  } else {
+    organisationsArray = [];
+  }
+
+  let whereArray;
+  if ("where" in thisObject) {
+    whereArray = _.split(thisObject.where, ";");
+  } else {
+    whereArray = [];
+  }
+
+  let whatArray;
+  if ("what" in thisObject) {
+    whatArray = _.split(thisObject.what, ";");
+  } else {
+    whatArray = [];
+  }
+
   // console.log(servicesArray);
 
   const thisMessages = _.filter(messages, { objectId: thisObject?._id });
