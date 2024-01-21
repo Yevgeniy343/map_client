@@ -91,6 +91,8 @@ const Object = ({
         <p className="value">Современность {reviews.r2}</p>
         <p className="value">Состояние {reviews.r3}</p>
         <p className="value">Чистота {reviews.r4}</p>
+        <p className="value">Озелененность {reviews.r5}</p>
+        <p className="value">Расположение {reviews.r6}</p>
       </div>
       <div className="line">
         <p className="key">Положительные особенности:</p>

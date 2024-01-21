@@ -35,7 +35,7 @@ const SecondPanel = () => {
 
   const thisObject = _.find(objects, (object) => object._id === currentObject);
   const thisMessages = _.filter(messages, { objectId: thisObject?._id });
-  // console.log(thisObject);
+  console.log(thisObject);
   const handleStartDrag = () => {
     setIsDragging(true);
   };
@@ -116,22 +116,42 @@ const SecondPanel = () => {
           <div className="address">{thisObject?.address}</div>
           <div className="reviews">
             <p>Состояние площадки</p>
-            <div className="r">
-              <p>Безопасность</p>
-              {renderStars(thisObject?.reviews.r1)}
-            </div>
-            <div className="r">
-              <p>Современность</p>
-              {renderStars(thisObject?.reviews.r2)}
-            </div>
-            <div className="r">
-              <p>Состояние</p>
-              {renderStars(thisObject?.reviews.r3)}
-            </div>
-            <div className="r">
-              <p>Чистота</p>
-              {renderStars(thisObject?.reviews.r4)}
-            </div>
+            {thisObject.reviews.r1 && (
+              <div className="r">
+                <p>Безопасность</p>
+                {renderStars(thisObject?.reviews.r1)}
+              </div>
+            )}
+            {thisObject.reviews.r2 && (
+              <div className="r">
+                <p>Современность</p>
+                {renderStars(thisObject?.reviews.r2)}
+              </div>
+            )}
+            {thisObject.reviews.r3 && (
+              <div className="r">
+                <p>Состояние</p>
+                {renderStars(thisObject?.reviews.r3)}
+              </div>
+            )}
+            {thisObject.reviews.r4 && (
+              <div className="r">
+                <p>Чистота</p>
+                {renderStars(thisObject?.reviews.r4)}
+              </div>
+            )}
+            {thisObject.reviews.r5 && (
+              <div className="r">
+                <p>Озелененность</p>
+                {renderStars(thisObject?.reviews.r5)}
+              </div>
+            )}
+            {thisObject.reviews.r6 && (
+              <div className="r">
+                <p>Расположение</p>
+                {renderStars(thisObject?.reviews.r6)}
+              </div>
+            )}
           </div>
           <div className="info">
             <p>Особенности</p>
@@ -279,7 +299,7 @@ const Wrapper = styled.div`
       display: flex;
       align-items: center;
       svg {
-        font-size: 14px;
+        font-size: 13px;
       }
       p {
         margin-right: 5px;

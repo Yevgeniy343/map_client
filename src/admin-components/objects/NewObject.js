@@ -17,6 +17,8 @@ const initialState = {
   r2: "",
   r3: "",
   r4: "",
+  r5: "",
+  r6: "",
 };
 
 const NewObject = () => {
@@ -37,7 +39,8 @@ const NewObject = () => {
   };
 
   const createObjectHandler = () => {
-    const { name, lat, long, address, contacts, r1, r2, r3, r4 } = values;
+    const { name, lat, long, address, contacts, r1, r2, r3, r4, r5, r6 } =
+      values;
     dispatch(
       createObject({
         subcategory: currentObject,
@@ -46,10 +49,16 @@ const NewObject = () => {
         long,
         address,
         contacts,
+        // ...(r1 && { r1 }),
+        // ...(r2 && { r2 }),
+        // ...(r3 && { r1 }),
+        // ...(r1 && { r1 }),
         r1,
         r2,
         r3,
         r4,
+        r5,
+        r6,
       })
     );
   };
@@ -158,6 +167,113 @@ const NewObject = () => {
           max="5"
         />
       </div>
+      <div className="in">
+        <Input2
+          placeholder="озелененность (1-5)"
+          type="number"
+          name="r5"
+          value={values.r5}
+          onChange={changeHandler}
+          autoComplete="off"
+          min="1"
+          max="5"
+        />
+      </div>
+      <div className="in">
+        <Input2
+          placeholder="расположение (1-5)"
+          type="number"
+          name="r6"
+          value={values.r6}
+          onChange={changeHandler}
+          autoComplete="off"
+          min="1"
+          max="5"
+        />
+      </div>
+      <div className="extra">
+        <p>перечисления через ";" </p>
+        <div className="in">
+          <Input2
+            placeholder="услуги"
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={changeHandler}
+            autoComplete="off"
+          />
+        </div>
+        <div className="in">
+          <Input2
+            placeholder="программы"
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={changeHandler}
+            autoComplete="off"
+          />
+        </div>
+        <div className="in">
+          <Input2
+            placeholder="породы"
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={changeHandler}
+            autoComplete="off"
+          />
+        </div>
+        <div className="in">
+          <Input2
+            placeholder="магазины"
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={changeHandler}
+            autoComplete="off"
+          />
+        </div>
+        <div className="in">
+          <Input2
+            placeholder="кафе"
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={changeHandler}
+            autoComplete="off"
+          />
+        </div>
+        <div className="in">
+          <Input2
+            placeholder="организации"
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={changeHandler}
+            autoComplete="off"
+          />
+        </div>
+        <div className="in">
+          <Input2
+            placeholder="куда пойдут вещи"
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={changeHandler}
+            autoComplete="off"
+          />
+        </div>
+        <div className="in">
+          <Input2
+            placeholder="что можно сдавать"
+            type="text"
+            name="name"
+            value={values.name}
+            onChange={changeHandler}
+            autoComplete="off"
+          />
+        </div>
+      </div>
       <div className="actions">
         <Button text="Создать" onClick={createObjectHandler} />
       </div>
@@ -171,11 +287,17 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: start;
   }
+  .extra {
+    border: 1px outset var(--clr-green-dark);
+    width: 335px;
+    margin: 10px 0;
+  }
   .actions {
     width: 100%;
     display: flex;
     justify-content: center;
   }
+
   @media (min-width: 576px) {
   }
   @media (min-width: 768px) {
