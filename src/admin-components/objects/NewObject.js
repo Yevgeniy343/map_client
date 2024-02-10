@@ -67,6 +67,9 @@ const NewObject = () => {
       shops,
       where,
       what,
+      site,
+      phone,
+      email,
     } = values;
     dispatch(
       createObject({
@@ -76,6 +79,9 @@ const NewObject = () => {
         long,
         address,
         contacts,
+        site,
+        phone,
+        email,
         // ...(r1 && { r1 }),
         // ...(r2 && { r2 }),
         // ...(r3 && { r1 }),
@@ -134,6 +140,39 @@ const NewObject = () => {
           autoComplete="off"
         />
       </div>
+      {/* _________________________________________ */}
+      <div className="in">
+        <Input2
+          placeholder="сайт"
+          type="text"
+          name="site"
+          value={values.site}
+          onChange={changeHandler}
+          autoComplete="off"
+        />
+      </div>
+      <div className="in">
+        <Input2
+          placeholder="телефон"
+          type="phone"
+          name="phone"
+          value={values.phone}
+          onChange={changeHandler}
+          autoComplete="off"
+        />
+      </div>
+      <div className="in">
+        <Input2
+          placeholder="email"
+          type="email"
+          name="email"
+          value={values.email}
+          onChange={changeHandler}
+          autoComplete="off"
+        />
+      </div>
+      {/* _________________________________________ */}
+
       <div className="in">
         <Input2
           placeholder="lat"

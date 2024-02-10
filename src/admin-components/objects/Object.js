@@ -34,6 +34,9 @@ const Object = ({
   shops,
   where,
   what,
+  site,
+  phone,
+  email,
 }) => {
   const dispatch = useDispatch();
   const [values, setValues] = useState(initialState);
@@ -93,6 +96,21 @@ const Object = ({
         <p className="key">Контакты:</p>
         <p className="value">{contacts}</p>
       </div>
+      {/* __________________________________________________ */}
+      <div className="line">
+        <p className="key">Сайт:</p>
+        <p className="value">{site}</p>
+      </div>
+      <div className="line">
+        <p className="key">Телефон:</p>
+        <p className="value">{phone}</p>
+      </div>
+      <div className="line">
+        <p className="key">Email:</p>
+        <p className="value">{email}</p>
+      </div>
+      {/* __________________________________________________ */}
+
       <div className="line">
         <p className="key">Локация:</p>
         <p className="value">{location.lat}</p>

@@ -23,7 +23,7 @@ const UserSubCategory = ({ name, _id, imageName }) => {
   return (
     <Wrapper>
       <p
-        className={_id === currentSubCategory._id ? "current-subcategory" : ""}
+        className={_id === currentSubCategory?._id ? "current-subcategory" : ""}
         onClick={subcategoryHandler}
       >
         {name}

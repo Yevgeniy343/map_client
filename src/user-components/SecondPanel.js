@@ -34,7 +34,7 @@ const SecondPanel = () => {
   };
 
   const thisObject = _.find(objects, (object) => object._id === currentObject);
-  // console.log(thisObject);
+  console.log(thisObject);
 
   let servicesArray;
   if ("services" in thisObject) {
@@ -161,8 +161,21 @@ const SecondPanel = () => {
               <Button text=">" onClick={handleRightClick} />
             </div>
           </div>
-          <div className="name">{thisObject?.name}</div>
-          <div className="address">{thisObject?.address}</div>
+          {thisObject.name && <div className="name">{thisObject?.name}</div>}
+          <div className="contacts">
+            {thisObject.address && (
+              <div className="address">адрес: {thisObject?.address}</div>
+            )}
+            {thisObject.email && (
+              <div className="address">email: {thisObject?.email}</div>
+            )}
+            {thisObject.phone && (
+              <div className="address">телефон: {thisObject?.phone}</div>
+            )}
+            {thisObject.site && (
+              <div className="address">сайт: {thisObject?.site}</div>
+            )}
+          </div>
           <div className="reviews">
             <p>Состояние площадки</p>
             {thisObject.reviews.r1 && (
@@ -222,7 +235,7 @@ const SecondPanel = () => {
               <p>Услуги</p>
               {servicesArray?.map((item) => (
                 <div className="inf" key={Math.random()}>
-                  <p>{item}</p>
+                  <p>● {item}</p>
                 </div>
               ))}
             </div>
@@ -232,7 +245,7 @@ const SecondPanel = () => {
               <p>Породы</p>
               {breedsArray?.map((item) => (
                 <div className="inf" key={Math.random()}>
-                  <p>{item}</p>
+                  <p>● {item}</p>
                 </div>
               ))}
             </div>
@@ -242,7 +255,7 @@ const SecondPanel = () => {
               <p>Программы</p>
               {programsArray?.map((item) => (
                 <div className="inf" key={Math.random()}>
-                  <p>{item}</p>
+                  <p>● {item}</p>
                 </div>
               ))}
             </div>
@@ -252,7 +265,7 @@ const SecondPanel = () => {
               <p>Магазины</p>
               {shopsArray?.map((item) => (
                 <div className="inf" key={Math.random()}>
-                  <p>{item}</p>
+                  <p>● {item}</p>
                 </div>
               ))}
             </div>
@@ -262,7 +275,7 @@ const SecondPanel = () => {
               <p>Кафе</p>
               {coffeeArray?.map((item) => (
                 <div className="inf" key={Math.random()}>
-                  <p>{item}</p>
+                  <p>● {item}</p>
                 </div>
               ))}
             </div>
@@ -272,7 +285,7 @@ const SecondPanel = () => {
               <p>Организации</p>
               {organisationsArray?.map((item) => (
                 <div className="inf" key={Math.random()}>
-                  <p>{item}</p>
+                  <p>● {item}</p>
                 </div>
               ))}
             </div>
@@ -282,7 +295,7 @@ const SecondPanel = () => {
               <p>Куда пойдут вещи</p>
               {whereArray?.map((item) => (
                 <div className="inf" key={Math.random()}>
-                  <p>{item}</p>
+                  <p>● {item}</p>
                 </div>
               ))}
             </div>
@@ -292,7 +305,7 @@ const SecondPanel = () => {
               <p>Что можно сдавать</p>
               {whatArray?.map((item) => (
                 <div className="inf" key={Math.random()}>
-                  <p>{item}</p>
+                  <p>● {item}</p>
                 </div>
               ))}
             </div>
@@ -470,6 +483,12 @@ const Wrapper = styled.div`
         font-size: 15px;
       }
     }
+  }
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 10px;
   }
   @media (min-width: 576px) {
   }

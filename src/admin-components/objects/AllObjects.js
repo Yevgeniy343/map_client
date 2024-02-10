@@ -16,7 +16,7 @@ const AllObjects = () => {
 
   return (
     <Wrapper>
-      {objects.map((o) => (
+      {objects?.map((o) => (
         <Object key={o._id} {...o} />
       ))}
     </Wrapper>
