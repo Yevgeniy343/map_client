@@ -92,6 +92,7 @@ const SecondPanel = () => {
   }
 
   // console.log(servicesArray);
+  console.log("thisObject", thisObject);
 
   const thisMessages = _.filter(messages, { objectId: thisObject?._id });
   const handleStartDrag = () => {
@@ -176,60 +177,69 @@ const SecondPanel = () => {
               <div className="address">сайт: {thisObject?.site}</div>
             )}
           </div>
-          <div className="reviews">
-            <p>Состояние площадки</p>
-            {thisObject.reviews.r1 && (
-              <div className="r">
-                <p>Безопасность</p>
-                {renderStars(thisObject?.reviews.r1)}
-              </div>
-            )}
-            {thisObject.reviews.r2 && (
-              <div className="r">
-                <p>Современность</p>
-                {renderStars(thisObject?.reviews.r2)}
-              </div>
-            )}
-            {thisObject.reviews.r3 && (
-              <div className="r">
-                <p>Состояние</p>
-                {renderStars(thisObject?.reviews.r3)}
-              </div>
-            )}
-            {thisObject.reviews.r4 && (
-              <div className="r">
-                <p>Чистота</p>
-                {renderStars(thisObject?.reviews.r4)}
-              </div>
-            )}
-            {thisObject.reviews.r5 && (
-              <div className="r">
-                <p>Озелененность</p>
-                {renderStars(thisObject?.reviews.r5)}
-              </div>
-            )}
-            {thisObject.reviews.r6 && (
-              <div className="r">
-                <p>Расположение</p>
-                {renderStars(thisObject?.reviews.r6)}
-              </div>
-            )}
-          </div>
-          <div className="info">
-            <p>Особенности</p>
-            {thisObject?.info1.map((info) => (
-              <div className="inf" key={Math.random()}>
-                <FcOk />
-                <p>{info}</p>
-              </div>
-            ))}
-            {thisObject?.info2.map((info) => (
-              <div className="inf" key={Math.random()}>
-                <FcCancel />
-                <p>{info}</p>
-              </div>
-            ))}
-          </div>
+          {(thisObject.reviews.r1 !== null ||
+            thisObject.reviews.r2 !== null ||
+            thisObject.reviews.r3 !== null ||
+            thisObject.reviews.r4 !== null ||
+            thisObject.reviews.r5 !== null ||
+            thisObject.reviews.r6 !== null) && (
+            <div className="reviews">
+              <p>Состояние площадки</p>
+              {thisObject.reviews.r1 && (
+                <div className="r">
+                  <p>Безопасность</p>
+                  {renderStars(thisObject?.reviews.r1)}
+                </div>
+              )}
+              {thisObject.reviews.r2 && (
+                <div className="r">
+                  <p>Современность</p>
+                  {renderStars(thisObject?.reviews.r2)}
+                </div>
+              )}
+              {thisObject.reviews.r3 && (
+                <div className="r">
+                  <p>Состояние</p>
+                  {renderStars(thisObject?.reviews.r3)}
+                </div>
+              )}
+              {thisObject.reviews.r4 && (
+                <div className="r">
+                  <p>Чистота</p>
+                  {renderStars(thisObject?.reviews.r4)}
+                </div>
+              )}
+              {thisObject.reviews.r5 && (
+                <div className="r">
+                  <p>Озелененность</p>
+                  {renderStars(thisObject?.reviews.r5)}
+                </div>
+              )}
+              {thisObject.reviews.r6 && (
+                <div className="r">
+                  <p>Расположение</p>
+                  {renderStars(thisObject?.reviews.r6)}
+                </div>
+              )}
+            </div>
+          )}
+          {(thisObject?.info1?.length > 0 || thisObject?.info2?.length > 0) && (
+            <div className="info">
+              <p>Особенности</p>
+              {thisObject?.info1.map((info) => (
+                <div className="inf" key={Math.random()}>
+                  <FcOk />
+                  <p>{info}</p>
+                </div>
+              ))}
+              {thisObject?.info2.map((info) => (
+                <div className="inf" key={Math.random()}>
+                  <FcCancel />
+                  <p>{info}</p>
+                </div>
+              ))}
+            </div>
+          )}
           {thisObject.services && (
             <div className="info">
               <p>Услуги</p>
