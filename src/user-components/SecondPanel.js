@@ -184,7 +184,7 @@ const SecondPanel = () => {
             thisObject.reviews.r5 !== null ||
             thisObject.reviews.r6 !== null) && (
             <div className="reviews">
-              <p>Состояние площадки</p>
+              <p>Состояние</p>
               {thisObject.reviews.r1 && (
                 <div className="r">
                   <p>Безопасность</p>
