@@ -47,7 +47,6 @@ const MapComponent = () => {
               options={{
                 iconLayout: "default#image",
                 iconImageHref: require(`../images/${currentSubCategory.imageName}.svg`),
-
                 iconImageSize: [40, 30],
                 // iconImageOffset: [-3, -42],
               }}

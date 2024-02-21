@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import UserCategory from "./UserCategory";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Panel = () => {
-  const dispatch = useDispatch();
   const { categories } = useSelector((store) => store.user);
+  console.log(categories);
   return (
     <Wrapper>
       <div className="header">

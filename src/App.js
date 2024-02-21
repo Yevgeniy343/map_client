@@ -12,17 +12,6 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
-          {/* <Route
-            path="/"
-            element={
-              <ProtectedRoute>
-                <PersonalArea />
-              </ProtectedRoute>
-            }
-          >
-            <Route path="/personal-area" element={<PersonalArea />} />
-          </Route> */}
-
           <Route
             path="/a-panel"
             element={
@@ -32,7 +21,7 @@ function App() {
               </ProtectedAdmin>
             }
           >
-            <Route path="/a-panel" element={<AdminPage />} />
+            <Route path="/a-panel" element={<AdminCatalogPage />} />
           </Route>
 
           <Route

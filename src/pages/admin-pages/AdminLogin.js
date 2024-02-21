@@ -104,7 +104,6 @@ const Wrapper = styled.div`
   }
   .actions {
     display: flex;
-    /* width: 100%; */
   }
   @media (min-width: 576px) {
   }

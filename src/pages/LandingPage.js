@@ -15,6 +15,7 @@ import SecondPanel from "../user-components/SecondPanel";
 const LandingPage = () => {
   const { currentObject, isSecondPanel } = useSelector((store) => store.user);
   const [isPanel, setIsPanel] = useState(true);
+
   const dispatch = useDispatch();
 
   useEffect(() => {

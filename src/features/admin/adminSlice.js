@@ -18,13 +18,11 @@ import {
   getAdminFromLocalStorage,
   addAdminTokenToLocalStorage,
   removeAdminTokenFromLocalStorage,
-  // getAdminTokenFromLocalStorage,
 } from "../../utils/localStorage";
 
 const initialState = {
   isLoading: false,
   admin: getAdminFromLocalStorage(),
-  // token: getAdminTokenFromLocalStorage(),
   isSidebarOpen: false,
   categories: [],
   subCategories: [],
@@ -35,6 +33,7 @@ const initialState = {
 export const loginAdmin = createAsyncThunk(
   "admin/loginAdmin",
   async (admin, thunkAPI) => {
+    console.log(admin);
     return loginAdminThunk(`/auth_admin/login/`, admin, thunkAPI);
   }
 );

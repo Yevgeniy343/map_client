@@ -29,8 +29,6 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: space-around;
     width: 100%;
-
-    /* border: 1px solid gray; */
   }
 
   @media (min-width: 576px) {
